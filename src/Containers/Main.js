@@ -13,8 +13,7 @@ const Main = () => {
 
   const handleClick = (e) => {
     console.log("click ", e);
-    this.setState({ current: e.key });
-    setMail();
+    setMail(e.key);
   };
 
   const { current } = this.state;
