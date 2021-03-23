@@ -1,11 +1,12 @@
 import Navbar from "../Components/Navbar";
-import { ChakraProvider } from "@chakra-ui/react";
+import Hero from "../Components/Hero";
 
 const Main = () => {
   return (
-    <ChakraProvider>
+    <div>
       <Navbar />
-    </ChakraProvider>
+      <Hero />
+    </div>
   );
 };
 
