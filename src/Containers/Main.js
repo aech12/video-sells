@@ -1,12 +1,11 @@
 import Navbar from "../Components/Navbar";
-import { Button, ButtonGroup } from "@chakra-ui/react";
+import { ChakraProvider } from "@chakra-ui/react";
 
 const Main = () => {
   return (
-    <div>
+    <ChakraProvider>
       <Navbar />
-      <Button colorScheme="blue">Button</Button>
-    </div>
+    </ChakraProvider>
   );
 };
 
