@@ -14,13 +14,15 @@ export default function Hero() {
   const [videos, setVideos] = useState([]);
 
   useEffect(() => {
-    const populateVideos = () => {
-      for (let i = 0; i < 13; i++) {
-        setVideos(...videos, [<GridItem colSpan={1} bg="blue" />]);
-      }
-    };
-    populateVideos();
-  });
+    // const populateVideos = () => {
+    //   for (let i = 0; i < 12; i++) {
+    //     setVideos([...videos, <GridItem colSpan={1} bg="blue" />]);
+    //   }
+    // };
+    // populateVideos();
+    // setVideos([...videos, <GridItem colSpan={1} bg="blue" />]);
+    console.log("VIDEOS", videos);
+  }, [videos]);
 
   return (
     <>
@@ -36,9 +38,8 @@ export default function Hero() {
           // templateColumns="repeat(5, 1fr)"
           gap={4}
         >
-          {videos.map((video) => video)}
-
           <GridItem colSpan={1} bg="papayawhip" />
+          {videos.map((video) => video)}
         </Grid>
       </Container>
     </>
