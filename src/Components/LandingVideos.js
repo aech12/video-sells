@@ -6,7 +6,9 @@ import {
   Text,
   Button,
   Stack,
-  useColorModeValue
+  useColorModeValue,
+  Flex,
+  Spacer
 } from "@chakra-ui/react";
 import { Grid, GridItem } from "@chakra-ui/react";
 
@@ -15,9 +17,12 @@ export default function Hero() {
 
   useEffect(() => {
     const populateVideos = () => {
-      let fetchVideos =  []
+      let fetchVideos = [];
       for (let i = 0; i < 12; i++) {
-        fetchVideos = [...fetchVideos, <GridItem key={i} colSpan={1} bg="blue" />]
+        fetchVideos = [
+          ...fetchVideos,
+          <GridItem key={i} colSpan={1} bg="blue" />
+        ];
       }
       setVideos(fetchVideos);
     };
