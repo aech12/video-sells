@@ -1,11 +1,11 @@
-import LandingVideos from "../Components/LandingVideos";
+import JoinForm from "../Components/JoinForm";
 
-const Main = () => {
+const Join = () => {
   return (
     <>
-      <LandingVideos />
+      <JoinForm />
     </>
   );
 };
 
-export default Main;
+export default Join;

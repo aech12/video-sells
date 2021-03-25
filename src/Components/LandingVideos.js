@@ -8,9 +8,10 @@ import {
   Stack,
   useColorModeValue,
   Flex,
-  Spacer
+  Spacer,
+  Grid,
+  GridItem
 } from "@chakra-ui/react";
-import { Grid, GridItem } from "@chakra-ui/react";
 
 export default function Hero() {
   const [videos, setVideos] = useState([]);
