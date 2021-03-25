@@ -27,8 +27,9 @@ import {
   RadioGroup
 } from "@chakra-ui/react";
 
-export default function Component() {
+export default function JoinForm() {
   return (
+    // change FaUser
     <Box bg={useColorModeValue("gray.50", "inherit")} p={10}>
       <Box>
         <SimpleGrid
@@ -129,7 +130,7 @@ export default function Component() {
                       bg={useColorModeValue("gray.100", "gray.800")}
                       icon={
                         <Icon
-                          as={FaUser}
+                          // as={FaUser}
                           boxSize={9}
                           mt={3}
                           rounded="full"
