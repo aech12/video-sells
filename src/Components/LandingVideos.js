@@ -21,7 +21,7 @@ export default function Hero() {
       for (let i = 0; i < 12; i++) {
         fetchVideos = [
           ...fetchVideos,
-          <GridItem key={i} colSpan={1} bg="blue" />
+          <GridItem flex="1 0 24rem 36rem" key={i} colSpan={1} bg="blue" />
         ];
       }
       setVideos(fetchVideos);
@@ -35,13 +35,12 @@ export default function Hero() {
       <Container maxW={"3xl"}>
         <Grid
           h="200px"
-          // templateRows="repeat(2, 1fr)"
           templateColumns={{
             base: "repeat(1, 1fr)",
             sm: "repeat(2, 1fr)",
-            md: "repeat(4, 1fr)"
+            md: "repeat(3, 1fr)"
           }}
-          // templateColumns="repeat(5, 1fr)"
+          // templateRows="repeat(1, 1fr)"
           gap={4}
         >
           {videos.map((video) => video)}
