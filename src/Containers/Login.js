@@ -27,7 +27,7 @@ import {
 } from "@chakra-ui/react";
 import { FaUser } from "react-icons/fa";
 
-export default function JoinForm() {
+export default function Login() {
   return (
     <Box bg={useColorModeValue("gray.50", "inherit")} p={10}>
       <Box mt={[10, 0]}>

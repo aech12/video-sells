@@ -13,7 +13,7 @@ import {
   GridItem
 } from "@chakra-ui/react";
 
-export default function Hero() {
+export default function MainVideos() {
   const [videos, setVideos] = useState([]);
 
   useEffect(() => {
