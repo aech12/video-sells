@@ -1,9 +1,10 @@
-import LandingVideos from "../Components/LandingVideos";
+import React from "react";
+import MainVideos from "../Components/MainVideos";
 
 const Main = () => {
   return (
     <>
-      <LandingVideos />
+      <MainVideos />
     </>
   );
 };
