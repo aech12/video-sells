@@ -21,6 +21,7 @@ import {
   ChevronDownIcon,
   ChevronRightIcon
 } from "@chakra-ui/icons";
+import { Link as RouterLink } from "react-router-dom";
 
 export default function Navbar() {
   const { isOpen, onToggle } = useDisclosure();
@@ -58,7 +59,7 @@ export default function Navbar() {
             fontFamily={"heading"}
             color={useColorModeValue("gray.800", "white")}
           >
-            Logo
+            <RouterLink to="/">Logo</RouterLink>
           </Text>
 
           <Flex display={{ base: "none", md: "flex" }} ml={10}>
@@ -73,16 +74,17 @@ export default function Navbar() {
           spacing={6}
         >
           <Button
+            display={{ base: "none", md: "inline-flex" }}
             as={"a"}
             fontSize={"sm"}
             fontWeight={400}
             variant={"link"}
             href={"#"}
           >
-            Sign In
+            <RouterLink to="/login">Login</RouterLink>
           </Button>
           <Button
-            display={{ base: "none", md: "inline-flex" }}
+            display={{ base: "inline-flex" }}
             fontSize={"sm"}
             fontWeight={600}
             color={"white"}
@@ -92,7 +94,7 @@ export default function Navbar() {
               bg: "pink.300"
             }}
           >
-            Sign Up
+            Access now!
           </Button>
         </Stack>
       </Flex>
@@ -111,19 +113,26 @@ const DesktopNav = () => {
         <Box key={navItem.label}>
           <Popover trigger={"hover"} placement={"bottom-start"}>
             <PopoverTrigger>
-              <Link
-                p={2}
-                href={navItem.href ?? "#"}
-                fontSize={"sm"}
-                fontWeight={500}
-                color={useColorModeValue("gray.600", "gray.200")}
-                _hover={{
-                  textDecoration: "none",
-                  color: useColorModeValue("gray.800", "white")
-                }}
-              >
-                {navItem.label}
-              </Link>
+              <RouterLink to={`${navItem.href}`}>
+                <Link
+                  p={2}
+                  href={navItem.href ?? "#"}
+                  display={
+                    navItem.displayDesktop === "none"
+                      ? { base: "none" }
+                      : "inline-flex"
+                  }
+                  fontSize={"sm"}
+                  fontWeight={500}
+                  // color={useColorModeValue("gray.600", "gray.200")}
+                  _hover={{
+                    textDecoration: "none",
+                    color: useColorModeValue("gray.800", "white")
+                  }}
+                >
+                  {navItem.label}
+                </Link>
+              </RouterLink>
             </PopoverTrigger>
 
             {navItem.children && (
@@ -149,7 +158,7 @@ const DesktopNav = () => {
   );
 };
 
-const DesktopSubNav = ({ label, href, subLabel }: NavItem) => {
+const DesktopSubNav = ({ label, href, subLabel, displayDesktop }: NavItem) => {
   return (
     <Link
       href={href}
@@ -194,7 +203,9 @@ const MobileNav = () => {
       display={{ md: "none" }}
     >
       {NAV_ITEMS.map((navItem) => (
-        <MobileNavItem key={navItem.label} {...navItem} />
+        <RouterLink to={`${navItem.href}`}>
+          <MobileNavItem key={navItem.label} {...navItem} />
+        </RouterLink>
       ))}
     </Stack>
   );
@@ -258,45 +269,25 @@ interface NavItem {
   subLabel?: string;
   children?: Array<NavItem>;
   href?: string;
+  displayDesktop: string;
 }
 
 const NAV_ITEMS: Array<NavItem> = [
   {
-    label: "Inspiration",
-    children: [
-      {
-        label: "Explore Design Work",
-        subLabel: "Trending Design to inspire you",
-        href: "#"
-      },
-      {
-        label: "New & Noteworthy",
-        subLabel: "Up-and-coming Designers",
-        href: "#"
-      }
-    ]
+    label: "Login",
+    href: "/login",
+    displayDesktop: "none"
   },
   {
-    label: "Find Work",
-    children: [
-      {
-        label: "Job Board",
-        subLabel: "Find your dream design job",
-        href: "#"
-      },
-      {
-        label: "Freelance Projects",
-        subLabel: "An exclusive list for contract work",
-        href: "#"
-      }
-    ]
+    label: "Top Videos",
+    href: "/top-videos"
   },
   {
-    label: "Learn Design",
-    href: "#"
+    label: "New",
+    href: "/new-videos"
   },
   {
-    label: "Hire Designers",
-    href: "#"
+    label: "Girls",
+    href: "/girls"
   }
 ];

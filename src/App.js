@@ -19,7 +19,7 @@ function App() {
     <ChakraProvider>
       <Router history={BrowserHistory}>
         <Navbar />
-        <Link to="/">home </Link>
+        <Link to="/"> home </Link>
         <Link to="/login">Link </Link>
         <Switch>
           <Route path="/" exact>
