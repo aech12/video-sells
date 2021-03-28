@@ -4,11 +4,11 @@ import { Switch, Route, Link } from "react-router-dom";
 
 const Join = () => {
   return (
-    <Switch>
-      <Route path="/login">
-        <Login />
-      </Route>
-    </Switch>
+    // <Switch>
+    //   <Route path="/login">
+    <Login />
+    //   </Route>
+    // </Switch>
   );
 };
 
