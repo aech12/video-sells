@@ -23,11 +23,11 @@ function App() {
         <Link to="/login">Link </Link>
         <Switch>
           <Route path="/" exact>
-            <Main />
-            <TopVideos />
-            <Join />
+            {/* <Main /> */}
+            {/* <TopVideos />
+            <Join /> */}
           </Route>
-          <Route path="/login" component={Login} />
+          {/* <Route path="/login" component={Login} /> */}
         </Switch>
       </Router>
     </ChakraProvider>

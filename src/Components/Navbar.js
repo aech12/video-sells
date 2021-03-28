@@ -75,7 +75,7 @@ export default function Navbar() {
         >
           <Button
             display={{ base: "none", md: "inline-flex" }}
-            as={"a"}
+            // as={"a"}
             fontSize={"sm"}
             fontWeight={400}
             variant={"link"}
@@ -94,7 +94,7 @@ export default function Navbar() {
               bg: "pink.300"
             }}
           >
-            Access now!
+            <RouterLink to="/login">Join Now</RouterLink>
           </Button>
         </Stack>
       </Flex>
@@ -114,7 +114,7 @@ const DesktopNav = () => {
           <Popover trigger={"hover"} placement={"bottom-start"}>
             <PopoverTrigger>
               <RouterLink to={`${navItem.href}`}>
-                <Link
+                <Text
                   p={2}
                   href={navItem.href ?? "#"}
                   display={
@@ -131,7 +131,7 @@ const DesktopNav = () => {
                   }}
                 >
                   {navItem.label}
-                </Link>
+                </Text>
               </RouterLink>
             </PopoverTrigger>
 
@@ -203,8 +203,8 @@ const MobileNav = () => {
       display={{ md: "none" }}
     >
       {NAV_ITEMS.map((navItem) => (
-        <RouterLink to={`${navItem.href}`}>
-          <MobileNavItem key={navItem.label} {...navItem} />
+        <RouterLink key={navItem.label} to={`${navItem.href}`}>
+          <MobileNavItem {...navItem} />
         </RouterLink>
       ))}
     </Stack>
@@ -218,7 +218,7 @@ const MobileNavItem = ({ label, children, href }: NavItem) => {
     <Stack spacing={4} onClick={children && onToggle}>
       <Flex
         py={2}
-        as={Link}
+        // as={Link}
         href={href ?? "#"}
         justify={"space-between"}
         align={"center"}
