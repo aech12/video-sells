@@ -20,14 +20,14 @@ function App() {
       <Router history={BrowserHistory}>
         <Navbar />
         <Link to="/"> home </Link>
-        <Link to="/login">Link </Link>
+        <Link to="/login">Login </Link>
         <Switch>
           <Route path="/" exact>
-            {/* <Main /> */}
+            <Main />
             {/* <TopVideos />
             <Join /> */}
           </Route>
-          {/* <Route path="/login" component={Login} /> */}
+          <Route path="/login" component={Login} />
         </Switch>
       </Router>
     </ChakraProvider>

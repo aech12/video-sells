@@ -1,286 +1,220 @@
-import React from "react";
 import {
-  chakra,
   Box,
   Flex,
-  useColorModeValue,
-  SimpleGrid,
-  GridItem,
+  Stack,
   Heading,
   Text,
-  Stack,
-  FormControl,
-  FormLabel,
+  Container,
   Input,
-  InputGroup,
-  InputLeftAddon,
-  FormHelperText,
-  Textarea,
-  Avatar,
-  Icon,
   Button,
-  VisuallyHidden,
-  Select,
-  Checkbox,
-  RadioGroup,
-  Radio
-} from "@chakra-ui/react";
-import { FaUser } from "react-icons/fa";
+  SimpleGrid,
+  Avatar,
+  AvatarGroup,
+  useBreakpointValue,
+  IconProps,
+  Icon,
+} from '@chakra-ui/react';
 
-export default function JoinForm() {
+const avatars = [
+  {
+    name: 'Ryan Florence',
+    url: 'https://bit.ly/ryan-florence',
+  },
+  {
+    name: 'Segun Adebayo',
+    url: 'https://bit.ly/sage-adebayo',
+  },
+  {
+    name: 'Kent Dodds',
+    url: 'https://bit.ly/kent-c-dodds',
+  },
+  {
+    name: 'Prosper Otemuyiwa',
+    url: 'https://bit.ly/prosper-baba',
+  },
+  {
+    name: 'Christian Nwamba',
+    url: 'https://bit.ly/code-beast',
+  },
+];
+
+export default function Login() {
   return (
-    <Box bg={useColorModeValue("gray.50", "inherit")} p={10}>
-      <Box mt={[10, 0]}>
-        <SimpleGrid
-          display={{ base: "initial", md: "grid" }}
-          columns={{ md: 3 }}
-          spacing={{ md: 6 }}
-        >
-          <GridItem colSpan={{ md: 1 }}>
-            <Box px={[4, 0]}>
-              <Heading fontSize="lg" fontWeight="medium" lineHeight="6">
-                Personal Information
-              </Heading>
+    <Box position={'relative'}>
+      <Container
+        as={SimpleGrid}
+        maxW={'7xl'}
+        columns={{ base: 1, md: 2 }}
+        spacing={{ base: 10, lg: 32 }}
+        py={{ base: 10, sm: 20, lg: 32 }}>
+        <Stack spacing={{ base: 10, md: 20 }}>
+          <Heading
+            lineHeight={1.1}
+            fontSize={{ base: '3xl', sm: '4xl', md: '5xl', lg: '6xl' }}>
+            Senior web designers{' '}
+            <Text
+              as={'span'}
+              bgGradient="linear(to-r, red.400,pink.400)"
+              bgClip="text">
+              &
+            </Text>{' '}
+            Full-Stack Developers
+          </Heading>
+          <Stack direction={'row'} spacing={4} align={'center'}>
+            <AvatarGroup>
+              {avatars.map((avatar) => (
+                <Avatar
+                  key={avatar.name}
+                  name={avatar.name}
+                  src={avatar.url}
+                  size={useBreakpointValue({ base: 'md', md: 'lg' })}
+                  position={'relative'}
+                  zIndex={2}
+                  _before={{
+                    content: '""',
+                    width: 'full',
+                    height: 'full',
+                    rounded: 'full',
+                    transform: 'scale(1.125)',
+                    bgGradient: 'linear(to-bl, red.400,pink.400)',
+                    position: 'absolute',
+                    zIndex: -1,
+                    top: 0,
+                    left: 0,
+                  }}
+                />
+              ))}
+            </AvatarGroup>
+            <Text fontFamily={'heading'} fontSize={{ base: '4xl', md: '6xl' }}>
+              +
+            </Text>
+            <Flex
+              align={'center'}
+              justify={'center'}
+              fontFamily={'heading'}
+              fontSize={{ base: 'sm', md: 'lg' }}
+              bg={'gray.800'}
+              color={'white'}
+              rounded={'full'}
+              width={useBreakpointValue({ base: '44px', md: '60px' })}
+              height={useBreakpointValue({ base: '44px', md: '60px' })}
+              position={'relative'}
+              _before={{
+                content: '""',
+                width: 'full',
+                height: 'full',
+                rounded: 'full',
+                transform: 'scale(1.125)',
+                bgGradient: 'linear(to-bl, orange.400,yellow.400)',
+                position: 'absolute',
+                zIndex: -1,
+                top: 0,
+                left: 0,
+              }}>
+              YOU
+            </Flex>
+          </Stack>
+        </Stack>
+        <Stack
+          bg={'gray.50'}
+          rounded={'xl'}
+          p={{ base: 4, sm: 6, md: 8 }}
+          spacing={{ base: 8 }}
+          maxW={{ lg: 'lg' }}>
+          <Stack spacing={4}>
+            <Heading
+              color={'gray.800'}
+              lineHeight={1.1}
+              fontSize={{ base: '2xl', sm: '3xl', md: '4xl' }}>
+              Join our team
               <Text
-                mt={1}
-                fontSize="sm"
-                color={useColorModeValue("gray.600", "gray.400")}
-              >
-                Use a permanent address where you can receive mail.
+                as={'span'}
+                bgGradient="linear(to-r, red.400,pink.400)"
+                bgClip="text">
+                !
               </Text>
-            </Box>
-          </GridItem>
-          <GridItem mt={[5, null, 0]} colSpan={{ md: 2 }}>
-            <chakra.form
-              action="#"
-              method="POST"
-              shadow="base"
-              rounded={[null, "md"]}
-              overflow={{ sm: "hidden" }}
-            >
-              <Stack
-                px={4}
-                py={5}
-                p={[null, 6]}
-                bg={useColorModeValue("white", "gray.700")}
-                spacing={6}
-              >
-                <SimpleGrid columns={6} spacing={6}>
-                  <FormControl as={GridItem} colSpan={[6, 3]}>
-                    <FormLabel
-                      fontSize="sm"
-                      fontWeight="md"
-                      color={useColorModeValue("gray.700", "gray.50")}
-                    >
-                      First name
-                    </FormLabel>
-                    <Input
-                      type="text"
-                      name="first_name"
-                      id="first_name"
-                      autoComplete="given-name"
-                      mt={1}
-                      focusBorderColor="brand.400"
-                      shadow="sm"
-                      size="sm"
-                      w="full"
-                      rounded="md"
-                    />
-                  </FormControl>
-
-                  <FormControl as={GridItem} colSpan={[6, 3]}>
-                    <FormLabel
-                      fontSize="sm"
-                      fontWeight="md"
-                      color={useColorModeValue("gray.700", "gray.50")}
-                    >
-                      Last name
-                    </FormLabel>
-                    <Input
-                      type="text"
-                      name="last_name"
-                      id="last_name"
-                      autoComplete="family-name"
-                      mt={1}
-                      focusBorderColor="brand.400"
-                      shadow="sm"
-                      size="sm"
-                      w="full"
-                      rounded="md"
-                    />
-                  </FormControl>
-
-                  <FormControl as={GridItem} colSpan={[6, 4]}>
-                    <FormLabel
-                      for="email_address"
-                      fontSize="sm"
-                      fontWeight="md"
-                      color={useColorModeValue("gray.700", "gray.50")}
-                    >
-                      Email address
-                    </FormLabel>
-                    <Input
-                      type="text"
-                      name="email_address"
-                      id="email_address"
-                      autoComplete="email"
-                      mt={1}
-                      focusBorderColor="brand.400"
-                      shadow="sm"
-                      size="sm"
-                      w="full"
-                      rounded="md"
-                    />
-                  </FormControl>
-
-                  <FormControl as={GridItem} colSpan={[6, 3]}>
-                    <FormLabel
-                      for="country"
-                      fontSize="sm"
-                      fontWeight="md"
-                      color={useColorModeValue("gray.700", "gray.50")}
-                    >
-                      Country / Region
-                    </FormLabel>
-                    <Select
-                      id="country"
-                      name="country"
-                      autoComplete="country"
-                      placeholder="Select option"
-                      mt={1}
-                      focusBorderColor="brand.400"
-                      shadow="sm"
-                      size="sm"
-                      w="full"
-                      rounded="md"
-                    >
-                      <option>United States</option>
-                      <option>Canada</option>
-                      <option>Mexico</option>
-                    </Select>
-                  </FormControl>
-
-                  <FormControl as={GridItem} colSpan={6}>
-                    <FormLabel
-                      for="street_address"
-                      fontSize="sm"
-                      fontWeight="md"
-                      color={useColorModeValue("gray.700", "gray.50")}
-                    >
-                      Street address
-                    </FormLabel>
-                    <Input
-                      type="text"
-                      name="street_address"
-                      id="street_address"
-                      autoComplete="street-address"
-                      mt={1}
-                      focusBorderColor="brand.400"
-                      shadow="sm"
-                      size="sm"
-                      w="full"
-                      rounded="md"
-                    />
-                  </FormControl>
-
-                  <FormControl as={GridItem} colSpan={[6, 6, null, 2]}>
-                    <FormLabel
-                      for="city"
-                      fontSize="sm"
-                      fontWeight="md"
-                      color={useColorModeValue("gray.700", "gray.50")}
-                    >
-                      City
-                    </FormLabel>
-                    <Input
-                      type="text"
-                      name="city"
-                      id="city"
-                      autoComplete="city"
-                      mt={1}
-                      focusBorderColor="brand.400"
-                      shadow="sm"
-                      size="sm"
-                      w="full"
-                      rounded="md"
-                    />
-                  </FormControl>
-
-                  <FormControl as={GridItem} colSpan={[6, 3, null, 2]}>
-                    <FormLabel
-                      for="state"
-                      fontSize="sm"
-                      fontWeight="md"
-                      color={useColorModeValue("gray.700", "gray.50")}
-                    >
-                      State / Province
-                    </FormLabel>
-                    <Input
-                      type="text"
-                      name="state"
-                      id="state"
-                      autoComplete="state"
-                      mt={1}
-                      focusBorderColor="brand.400"
-                      shadow="sm"
-                      size="sm"
-                      w="full"
-                      rounded="md"
-                    />
-                  </FormControl>
-
-                  <FormControl as={GridItem} colSpan={[6, 3, null, 2]}>
-                    <FormLabel
-                      for="postal_code"
-                      fontSize="sm"
-                      fontWeight="md"
-                      color={useColorModeValue("gray.700", "gray.50")}
-                    >
-                      ZIP / Postal
-                    </FormLabel>
-                    <Input
-                      type="text"
-                      name="postal_code"
-                      id="postal_code"
-                      autoComplete="postal-code"
-                      mt={1}
-                      focusBorderColor="brand.400"
-                      shadow="sm"
-                      size="sm"
-                      w="full"
-                      rounded="md"
-                    />
-                  </FormControl>
-                </SimpleGrid>
-              </Stack>
-              <Box
-                px={{ base: 4, sm: 6 }}
-                py={3}
-                bg={useColorModeValue("gray.50", "gray.900")}
-                textAlign="right"
-              >
-                <Button
-                  type="submit"
-                  colorScheme="brand"
-                  _focus={{ shadow: "" }}
-                  fontWeight="md"
-                >
-                  Save
-                </Button>
-              </Box>
-            </chakra.form>
-          </GridItem>
-        </SimpleGrid>
-      </Box>
-
-      <Box visibility={{ base: "hidden", sm: "visible" }} aria-hidden="true">
-        <Box py={5}>
-          <Box
-            borderTop="solid 1px"
-            borderTopColor={useColorModeValue("gray.200", "whiteAlpha.200")}
-          ></Box>
-        </Box>
-      </Box>
+            </Heading>
+            <Text color={'gray.500'} fontSize={{ base: 'sm', sm: 'md' }}>
+              We’re looking for amazing engineers just like you! Become a part
+              of our rockstar engineering team and skyrocket your career!
+            </Text>
+          </Stack>
+          <Box as={'form'} mt={10}>
+            <Stack spacing={4}>
+              <Input
+                placeholder="Firstname"
+                bg={'gray.100'}
+                border={0}
+                color={'gray.500'}
+                _placeholder={{
+                  color: 'gray.500',
+                }}
+              />
+              <Input
+                placeholder="firstname@lastname.io"
+                bg={'gray.100'}
+                border={0}
+                color={'gray.500'}
+                _placeholder={{
+                  color: 'gray.500',
+                }}
+              />
+              <Input
+                placeholder="+1 (___) __-___-___"
+                bg={'gray.100'}
+                border={0}
+                color={'gray.500'}
+                _placeholder={{
+                  color: 'gray.500',
+                }}
+              />
+              <Button fontFamily={'heading'} bg={'gray.200'} color={'gray.800'}>
+                Upload CV
+              </Button>
+            </Stack>
+            <Button
+              fontFamily={'heading'}
+              mt={8}
+              w={'full'}
+              bgGradient="linear(to-r, red.400,pink.400)"
+              color={'white'}
+              _hover={{
+                bgGradient: 'linear(to-r, red.400,pink.400)',
+                boxShadow: 'xl',
+              }}>
+              Submit
+            </Button>
+          </Box>
+          form
+        </Stack>
+      </Container>
+      <Blur
+        position={'absolute'}
+        top={-10}
+        left={-10}
+        style={{ filter: 'blur(70px)' }}
+      />
     </Box>
   );
 }
+
+export const Blur = (props: IconProps) => {
+  return (
+    <Icon
+      width={useBreakpointValue({ base: '100%', md: '40vw', lg: '30vw' })}
+      zIndex={useBreakpointValue({ base: -1, md: -1, lg: 0 })}
+      height="560px"
+      viewBox="0 0 528 560"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}>
+      <circle cx="71" cy="61" r="111" fill="#F56565" />
+      <circle cx="244" cy="106" r="139" fill="#ED64A6" />
+      <circle cy="291" r="139" fill="#ED64A6" />
+      <circle cx="80.5" cy="189.5" r="101.5" fill="#ED8936" />
+      <circle cx="196.5" cy="317.5" r="101.5" fill="#ECC94B" />
+      <circle cx="70.5" cy="458.5" r="101.5" fill="#48BB78" />
+      <circle cx="426.5" cy="-0.5" r="101.5" fill="#4299E1" />
+    </Icon>
+  );
+};

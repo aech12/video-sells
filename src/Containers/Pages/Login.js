@@ -1,8 +1,8 @@
 import React from "react";
 import Login from "../Components/Login";
 
-const Join = () => {
+const LoginPage = () => {
   return <Login />;
 };
 
-export default Join;
+export default LoginPage;
