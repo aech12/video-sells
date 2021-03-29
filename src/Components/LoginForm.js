@@ -1,4 +1,6 @@
 import { useForm } from "react-hook-form";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
 import {
   Button,
   Checkbox,
@@ -13,17 +15,18 @@ import {
   Image
 } from "@chakra-ui/react";
 
-export default function SplitScreen() {
-  const { register, handleSubmit, errors, formState } = useForm();
+const LoginSchema = yup.object().shape({
+  username: yup.string().required(),
+  password: yup.string().min(8).required()
+});
 
-  function onSubmit(values) {
-    // return new Promise((resolve) => {
-    //   setTimeout(() => {
-    //     alert(JSON.stringify(values, null, 2));
-    //     resolve();
-    //   }, 3000);
-    // });
-  }
+export default function SplitScreen() {
+  const { register, handleSubmit, errors, formState } = useForm({
+    resolver: yupResolver(LoginSchema),
+    mode: "onBlur"
+  });
+
+  const onSubmit = (values) => console.log(values);
 
   return (
     <Stack minH={"100vh"} direction={{ base: "column", md: "row" }}>
@@ -31,16 +34,19 @@ export default function SplitScreen() {
         <Stack spacing={4} w={"full"} maxW={"md"}>
           <form onSubmit={handleSubmit(onSubmit)}>
             <Heading fontSize={"2xl"}>Member Login</Heading>
-            <FormControl id="username">
+            <FormControl id="username" isInvalid={!!errors?.username?.message}>
               <FormLabel>Username</FormLabel>
-              <Input name="username" type="username" />
+              <Input name="username" type="username" ref={register} />
               <FormErrorMessage>
-                {errors.name && errors.name.message}
+                {errors.username && errors.username.message}
               </FormErrorMessage>
             </FormControl>
-            <FormControl id="password">
+            <FormControl id="password" isInvalid={!!errors?.password?.message}>
               <FormLabel>Password</FormLabel>
-              <Input name="password" type="password" />
+              <Input name="password" type="password" ref={register} />
+              <FormErrorMessage>
+                {errors.password && errors.password.message}
+              </FormErrorMessage>
             </FormControl>
             <Stack spacing={6}>
               <Stack
@@ -56,6 +62,7 @@ export default function SplitScreen() {
                 isLoading={formState.isSubmitting}
                 colorScheme={"blue"}
                 variant={"solid"}
+                // disabled={!!errors.email || !!errors.password}
               >
                 Enter
               </Button>
