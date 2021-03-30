@@ -6,6 +6,7 @@ import Main from "./Containers/Main";
 import TopVideos from "./Containers/TopVideos";
 import Join from "./Containers/Join";
 import Login from "./Containers/Login";
+import Register from "./Containers/Register";
 import {
   BrowserRouter as Router,
   Switch,
@@ -21,6 +22,7 @@ function App() {
         <Navbar />
         <Link to="/"> home </Link>
         <Link to="/login">Login </Link>
+        <Link to="/sign-up">Register </Link>
         <Switch>
           <Route path="/" exact>
             <Main />
@@ -28,6 +30,7 @@ function App() {
             <Join /> */}
           </Route>
           <Route path="/login" component={Login} />
+          <Route path="/sign-up" component={Register} />
         </Switch>
       </Router>
     </ChakraProvider>
