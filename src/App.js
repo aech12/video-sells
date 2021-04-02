@@ -2,6 +2,7 @@ import React from "react";
 import logo from "./logo.svg";
 import { ChakraProvider } from "@chakra-ui/react";
 import Navbar from "./Components/Navbar";
+import Footer from "./Components/Footer";
 import Main from "./Containers/Main";
 import TopVideos from "./Containers/TopVideos";
 import Join from "./Containers/Join";
@@ -26,12 +27,13 @@ function App() {
         <Switch>
           <Route path="/" exact>
             <Main />
-            {/* <TopVideos />
-            <Join /> */}
+            <TopVideos />
+            {/* <Join /> */}
           </Route>
           <Route path="/login" component={Login} />
           <Route path="/sign-up" component={Register} />
         </Switch>
+        <Footer />
       </Router>
     </ChakraProvider>
   );
