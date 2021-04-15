@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "./logo.svg";
+// import logo from "./Files/logo.svg";
 import { ChakraProvider } from "@chakra-ui/react";
 import Navbar from "./Components/Navbar";
 import Footer from "./Components/Footer";
@@ -7,6 +7,7 @@ import Main from "./Containers/Main";
 import TopVideos from "./Containers/TopVideos";
 import Join from "./Containers/Join";
 import Login from "./Containers/Login";
+import Video from "./Containers/Video";
 import Register from "./Containers/Register";
 import {
   BrowserRouter as Router,
@@ -23,7 +24,8 @@ function App() {
         <Navbar />
         <Link to="/"> home </Link>
         <Link to="/login">Login </Link>
-        <Link to="/sign-up">Register </Link>
+        <Link to="/sign-up">SignUp </Link>
+        <Link to="/video">Video </Link>
         <Switch>
           <Route path="/" exact>
             <Main />
@@ -32,6 +34,7 @@ function App() {
           </Route>
           <Route path="/login" component={Login} />
           <Route path="/sign-up" component={Register} />
+          <Route path="/video" component={Video} />
         </Switch>
         <Footer />
       </Router>
