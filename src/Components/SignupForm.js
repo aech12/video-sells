@@ -38,7 +38,7 @@ const avatars = [
   },
 ];
 
-export default function Login() {
+export default function SignupForm() {
   return (
     <Box position={'relative'}>
       <Container

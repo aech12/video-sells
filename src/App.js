@@ -1,12 +1,15 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 // import logo from "./Files/logo.svg";
-import { ChakraProvider } from "@chakra-ui/react";
+import axios from "axios";
+import api from "./services/api";
 import Navbar from "./Components/Navbar";
 import Footer from "./Components/Footer";
+import StripeCheckout from "./Components/StripeCheckout";
 import Main from "./Containers/Main";
 import TopVideos from "./Containers/TopVideos";
-import Join from "./Containers/Join";
-import Login from "./Containers/Login";
+import Signup from "./Containers/Signup";
+// import Login from "./Containers/Login";
+import Login from "./Components/LoginForm";
 import Video from "./Containers/Video";
 import Register from "./Containers/Register";
 import {
@@ -17,10 +20,115 @@ import {
   BrowserHistory
 } from "react-router-dom";
 
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
+
 function App() {
+  const [user, setUser] = useState(null);
+  const [notes, setNotes] = useState([]);
+  const [showAll, setShowAll] = useState(true);
+  const [errorMessage, setErrorMessage] = useState(null);
+
+  const stripePromise = loadStripe("pk_test_XWrOTD8OWaSHcs3UxtFZ7664");
+
+  // LOG IN
+  useEffect(() => {
+    const loggedUserJSON = window.localStorage.getItem("loggedUser");
+    if (loggedUserJSON) {
+      const user = JSON.parse(loggedUserJSON);
+      setUser(user);
+      api.setToken(user.token);
+    }
+  }, []);
+  const handleLogin = async (credentials) => {
+    console.log("logging in with", credentials);
+    try {
+      // const response = await axios.post('/login', credentials)
+      // const loggedUser = response.data
+
+      // if (loggedUser) {
+      //   api.setToken(loggedUser.token);
+      //   window.localStorage.setItem("loggedUser", JSON.stringify(loggedUser));
+      //   setUser(credentials);
+      // }
+      setUser(credentials);
+    } catch (exception) {
+      setErrorMessage("wrong credentials");
+      setTimeout(() => {
+        setErrorMessage(null);
+      }, 5000);
+    }
+  };
+
+  const handleSignup = async (credentials) => {
+    console.log("logging in with", credentials);
+    try {
+      // const response = await axios.post('/login', credentials)
+      // const loggedUser = response.data
+
+      // if (loggedUser) {
+      //   api.setToken(loggedUser.token);
+      //   window.localStorage.setItem("loggedUser", JSON.stringify(loggedUser));
+      //   setUser(credentials);
+      // }
+      setUser(credentials);
+    } catch (exception) {
+      setErrorMessage("wrong credentials");
+      setTimeout(() => {
+        setErrorMessage(null);
+      }, 5000);
+    }
+  };
+
+  // const stripeComp = () => {
+  //   const stripe = useStripe();
+  // const elements = useElements();
+  //   return (
+  //     <button
+  //       onClick={() => {
+  //         async function some() {
+  //           // Call Stripe.js method to redirect to the new Checkout page
+  //           // const stripe = await stripePromise
+  //           stripe
+  //             .redirectToCheckout({
+  //               sessionId:
+  //                 "cs_test_a1qvJuk0dEuCuR1O227zBr7fBzYN3W6YgNAEq7X52ez3ppomMzbHnU41DU"
+  //             })
+  //             .then((res) => console.log(res));
+  //         }
+  //         some();
+  //       }}
+  //     >
+  //       STRIPE
+  //     </button>
+  //   );
+  // };
+
   return (
-    <ChakraProvider>
+    <>
       <Router history={BrowserHistory}>
+        {/* {
+          <button
+            onClick={() => {
+              // Call Stripe.js method to redirect to the new Checkout page
+              // const stripe = useStripe();
+              stripe
+                .redirectToCheckout({
+                  sessionId:
+                    "cs_test_a1qvJuk0dEuCuR1O227zBr7fBzYN3W6YgNAEq7X52ez3ppomMzbHnU41DU"
+                })
+                .then((res) => console.log("res", res));
+              console.log("on some");
+            }}
+          >
+            STRIPE
+          </button>
+        } */}
+        <Elements stripe={stripePromise}>
+          {/* <ElementsConsumer> */}
+          <StripeCheckout />
+          {/* </ElementsConsumer> */}
+        </Elements>
         <Navbar />
         <Link to="/"> home </Link>
         <Link to="/login">Login </Link>
@@ -30,15 +138,23 @@ function App() {
           <Route path="/" exact>
             <Main />
             <TopVideos />
-            {/* <Join /> */}
+            <Route
+              path="/sign-up"
+              render={(props) => (
+                <Signup {...props} handleSignup={handleSignup} />
+              )}
+            />
           </Route>
-          <Route path="/login" component={Login} />
+          <Route
+            path="/login"
+            render={(props) => <Login {...props} handleLogin={handleLogin} />}
+          />
           <Route path="/sign-up" component={Register} />
           <Route path="/video" component={Video} />
         </Switch>
         <Footer />
       </Router>
-    </ChakraProvider>
+    </>
   );
 }
 

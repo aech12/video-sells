@@ -17,16 +17,18 @@ import {
 
 const LoginSchema = yup.object().shape({
   username: yup.string().required(),
-  password: yup.string().min(8).required()
+  password: yup.string().min(6).required()
 });
 
-export default function SplitScreen() {
+export default function LoginForm(props) {
   const { register, handleSubmit, errors, formState } = useForm({
     resolver: yupResolver(LoginSchema),
     mode: "onBlur"
   });
 
-  const onSubmit = (values) => console.log(values);
+  const onSubmit = (values) => {
+    props.handleLogin(values);
+  };
 
   return (
     <Stack minH={"100vh"} direction={{ base: "column", md: "row" }}>
@@ -36,14 +38,24 @@ export default function SplitScreen() {
             <Heading fontSize={"2xl"}>Member Login</Heading>
             <FormControl id="username" isInvalid={!!errors?.username?.message}>
               <FormLabel>Username</FormLabel>
-              <Input name="username" type="username" ref={register} />
+              <Input
+                value="user7"
+                name="username"
+                type="username"
+                ref={register}
+              />
               <FormErrorMessage>
                 {errors.username && errors.username.message}
               </FormErrorMessage>
             </FormControl>
             <FormControl id="password" isInvalid={!!errors?.password?.message}>
               <FormLabel>Password</FormLabel>
-              <Input name="password" type="password" ref={register} />
+              <Input
+                value="666666"
+                name="password"
+                type="password"
+                ref={register}
+              />
               <FormErrorMessage>
                 {errors.password && errors.password.message}
               </FormErrorMessage>
