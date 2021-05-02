@@ -10,3 +10,4 @@ todo
 - rewrite css
 - testing
 - wordpress react
+- setMessages (popups)

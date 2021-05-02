@@ -4,11 +4,16 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { ChakraProvider } from "@chakra-ui/react";
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
+const stripePromise = loadStripe("pk_test_XWrOTD8OWaSHcs3UxtFZ7664");
 
 ReactDOM.render(
   <React.StrictMode>
     <ChakraProvider>
-      <App />
+      <Elements stripe={stripePromise}>
+        <App />
+      </Elements>
     </ChakraProvider>
   </React.StrictMode>,
   document.getElementById("root")

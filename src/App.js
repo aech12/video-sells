@@ -5,6 +5,7 @@ import api from "./services/api";
 import Navbar from "./Components/Navbar";
 import Footer from "./Components/Footer";
 import StripeCheckout from "./Components/StripeCheckout";
+import Payment from "./Components/Payment";
 import Main from "./Containers/Main";
 import TopVideos from "./Containers/TopVideos";
 import Signup from "./Containers/Signup";
@@ -20,16 +21,11 @@ import {
   BrowserHistory
 } from "react-router-dom";
 
-import { Elements } from "@stripe/react-stripe-js";
-import { loadStripe } from "@stripe/stripe-js";
-
 function App() {
   const [user, setUser] = useState(null);
   const [notes, setNotes] = useState([]);
   const [showAll, setShowAll] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
-
-  const stripePromise = loadStripe("pk_test_XWrOTD8OWaSHcs3UxtFZ7664");
 
   // LOG IN
   useEffect(() => {
@@ -124,16 +120,17 @@ function App() {
             STRIPE
           </button>
         } */}
-        <Elements stripe={stripePromise}>
-          {/* <ElementsConsumer> */}
-          <StripeCheckout />
-          {/* </ElementsConsumer> */}
-        </Elements>
+        {/* <Elements stripe={stripePromise}> */}
+        {/* <ElementsConsumer> */}
+        {/* <StripeCheckout /> */}
+        {/* </ElementsConsumer> */}
+        {/* </Elements> */}
         <Navbar />
         <Link to="/"> home </Link>
         <Link to="/login">Login </Link>
         <Link to="/sign-up">SignUp </Link>
         <Link to="/video">Video </Link>
+        <Link to="/payment">Pay </Link>
         <Switch>
           <Route path="/" exact>
             <Main />
@@ -149,8 +146,9 @@ function App() {
             path="/login"
             render={(props) => <Login {...props} handleLogin={handleLogin} />}
           />
-          <Route path="/sign-up" component={Register} />
+          <Route path="/sign-up" component={Signup} />
           <Route path="/video" component={Video} />
+          <Route path="/payment" component={Payment} />
         </Switch>
         <Footer />
       </Router>

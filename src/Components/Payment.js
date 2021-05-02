@@ -16,10 +16,33 @@ import {
 } from "@chakra-ui/react";
 import { useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
 
-export default function SignupForm({ setPrice, handleSubtmit }) {
+export default function SignupForm({
+  username,
+  password,
+  email,
+  price,
+  StripeClientId
+}) {
+  const stripe = useStripe();
+  const elements = useElements();
+
+  if (!stripe || !elements) {
+    // Stripe.js has not loaded yet. Make sure to disable
+    // form submission until Stripe.js has loaded.
+    return "";
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    // Get a reference to a mounted CardElement. Elements knows how
+    // to find your CardElement because there can only ever be one of
+    // each type of element.
+    const cardElement = elements.getElement(CardElement);
+  };
+
   return (
     <Box position={"relative"}>
-      <button onClick={handleSubtmit}>to payment</button>
       <Container
         as={SimpleGrid}
         maxW={"7xl"}
@@ -32,15 +55,7 @@ export default function SignupForm({ setPrice, handleSubtmit }) {
             lineHeight={1.1}
             fontSize={{ base: "3xl", sm: "4xl", md: "5xl", lg: "6xl" }}
           >
-            Senior web designers{" "}
-            <Text
-              as={"span"}
-              bgGradient="linear(to-r, red.400,pink.400)"
-              bgClip="text"
-            >
-              &
-            </Text>{" "}
-            Full-Stack Developers
+            PAY{" "}
           </Heading>
         </Stack>
         <Stack
@@ -101,18 +116,6 @@ export default function SignupForm({ setPrice, handleSubtmit }) {
                 }}
               />
             </Stack>
-
-            {/* SELECT PLAN */}
-            <div>
-              <h3>Basic</h3>
-              <p>$5.00 / month</p>
-              <button onClick={setPrice("basic")}>Select</button>
-            </div>
-            <div>
-              <h3>Premium</h3>
-              <p>$15.00 / month</p>
-              <button onClick={setPrice("premium")}>Select</button>
-            </div>
 
             <Button
               fontFamily={"heading"}
