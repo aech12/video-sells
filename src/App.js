@@ -5,7 +5,7 @@ import api from "./services/api";
 import Navbar from "./Components/Navbar";
 import Footer from "./Components/Footer";
 import StripeCheckout from "./Components/StripeCheckout";
-import Payment from "./Components/Payment";
+import Payment from "./Containers/Payment";
 import Main from "./Containers/Main";
 import TopVideos from "./Containers/TopVideos";
 import Signup from "./Containers/Signup";

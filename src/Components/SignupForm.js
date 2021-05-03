@@ -16,7 +16,7 @@ import {
 } from "@chakra-ui/react";
 import { useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
 
-export default function SignupForm({ setPrice, handleSubtmit }) {
+export default function SignupForm({ setPriceKey, handleSubtmit }) {
   return (
     <Box position={"relative"}>
       <button onClick={handleSubtmit}>to payment</button>
@@ -106,12 +106,12 @@ export default function SignupForm({ setPrice, handleSubtmit }) {
             <div>
               <h3>Basic</h3>
               <p>$5.00 / month</p>
-              <button onClick={setPrice("basic")}>Select</button>
+              <button onClick={setPriceKey("basic")}>Select</button>
             </div>
             <div>
               <h3>Premium</h3>
               <p>$15.00 / month</p>
-              <button onClick={setPrice("premium")}>Select</button>
+              <button onClick={setPriceKey("premium")}>Select</button>
             </div>
 
             <Button
