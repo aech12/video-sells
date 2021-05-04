@@ -43,18 +43,23 @@ export default function PaymentForm(props) {
         <Stack spacing={4} w={"full"} maxW={"md"}>
           <form onSubmit={handleSubmit(onSubmit)}>
             <Heading fontSize={"2xl"}>Member Login</Heading>
-            <FormControl id="username" isInvalid={!!errors?.username?.message}>
-              <Input value="name nomer" name="name" ref={register} />
+            <FormControl id="name" isInvalid={!!errors?.username?.message}>
+              <Input
+                name="name"
+                placeholder="Full Name"
+                bg={"gray.100"}
+                border={0}
+                color={"gray.500"}
+                _placeholder={{
+                  color: "gray.500"
+                }}
+                ref={register}
+              />
               <FormErrorMessage>
                 {errors.username && errors.username.message}
               </FormErrorMessage>
             </FormControl>
-            <FormControl id="password" isInvalid={!!errors?.password?.message}>
-              <CardElement />
-              <FormErrorMessage>
-                {errors.password && errors.password.message}
-              </FormErrorMessage>
-            </FormControl>
+            <CardElement />
             <Stack spacing={6}>
               <Button
                 type="submit"
@@ -63,7 +68,7 @@ export default function PaymentForm(props) {
                 variant={"solid"}
                 // disabled={!!errors.email || !!errors.password}
               >
-                Enter
+                Submit
               </Button>
             </Stack>
           </form>

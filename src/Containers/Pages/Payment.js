@@ -1,15 +1,12 @@
 import { useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
 import { useState } from "react";
 import PaymentForm from "../../Components/PaymentForm";
+import { Redirect, withRouter } from "react-router-dom";
 import { createSubscription } from "../apicalls";
 
-export default function SignupForm({
-  username,
-  password,
-  email,
-  priceKey,
-  StripeClientId
-}) {
+const Payment = ({ location }) => {
+  const { username, password, email, priceKey, StripeClientId } =
+    location.state || {};
   const [message, setMessage] = useState("");
   const [subscription, setSubscription] = useState();
   const [userForDB, setUserForDB] = useState({ username, password, email });
@@ -87,9 +84,20 @@ export default function SignupForm({
     }
   };
 
-  // if(subscription && subscription.status === 'active') {
-  //   return <Redirect to={{pathname: '/account'}} />
-  // }
+  if (subscription && subscription.status === "active") {
+    console.log("sub", subscription.status);
+    return (
+      <Redirect
+        to={{ pathname: "/", state: { subscription: subscription.status } }}
+      />
+    );
+  }
+  return (
+    <>
+      <button onClick={() => setSubscription({ status: "active" })}>SUB</button>
+      <PaymentForm handleSubmit={handleSubmit} />
+    </>
+  );
+};
 
-  return <PaymentForm handleSubmit={handleSubmit} />;
-}
+export default withRouter(Payment);

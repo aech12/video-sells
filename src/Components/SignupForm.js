@@ -12,14 +12,27 @@ import {
   AvatarGroup,
   useBreakpointValue,
   IconProps,
-  Icon
+  Icon,
+  FormControl,
+  FormLabel,
+  FormErrorMessage,
+  Checkbox
 } from "@chakra-ui/react";
-import { useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
+import { useForm } from "react-hook-form";
 
-export default function SignupForm({ setPriceKey, handleSubtmit }) {
+export default function SignupForm({
+  setPriceKey,
+  handleSubmit: handleSignup
+}) {
+  const { register, handleSubmit, errors, formState } = useForm({
+    mode: "onBlur"
+  });
+  const onSubmit = (values) => {
+    handleSignup(values);
+  };
+
   return (
     <Box position={"relative"}>
-      <button onClick={handleSubtmit}>to payment</button>
       <Container
         as={SimpleGrid}
         maxW={"7xl"}
@@ -70,65 +83,98 @@ export default function SignupForm({ setPriceKey, handleSubtmit }) {
               of our rockstar engineering team and skyrocket your career!
             </Text>
           </Stack>
-          <Box as={"form"} mt={10}>
-            <Stack spacing={4}>
-              <Input
-                placeholder="Username"
-                bg={"gray.100"}
-                border={0}
-                color={"gray.500"}
-                _placeholder={{
-                  color: "gray.500"
-                }}
-              />
-              <Input
-                placeholder="Email"
-                bg={"gray.100"}
-                border={0}
-                color={"gray.500"}
-                _placeholder={{
-                  color: "gray.500"
-                }}
-              />
-              <Input
-                placeholder="Password"
-                type="password"
-                bg={"gray.100"}
-                border={0}
-                color={"gray.500"}
-                _placeholder={{
-                  color: "gray.500"
-                }}
-              />
-            </Stack>
+          {/* <form onSubmit={handleSubmit(onSubmit)}> */}
+          <Box mt={10}>
+            <form onSubmit={handleSubmit(onSubmit)}>
+              {/* SELECT PLAN */}
+              <div>
+                <h3>Basic</h3>
+                <p>$10.00 for 1 month</p>
+                <button onClick={setPriceKey("basic")}>Select</button>
+              </div>
+              <div>
+                <h3>Premium</h3>
+                <p>$25.00 for 3 months</p>
+                <button onClick={setPriceKey("premium")}>Select</button>
+              </div>
 
-            {/* SELECT PLAN */}
-            <div>
-              <h3>Basic</h3>
-              <p>$5.00 / month</p>
-              <button onClick={setPriceKey("basic")}>Select</button>
-            </div>
-            <div>
-              <h3>Premium</h3>
-              <p>$15.00 / month</p>
-              <button onClick={setPriceKey("premium")}>Select</button>
-            </div>
+              <Stack spacing={4}>
+                <FormControl
+                  id="username"
+                  isInvalid={!!errors?.username?.message}
+                >
+                  <Input
+                    name="username"
+                    placeholder="Username"
+                    bg={"gray.100"}
+                    border={0}
+                    color={"gray.500"}
+                    _placeholder={{
+                      color: "gray.500"
+                    }}
+                    ref={register}
+                  />
+                  <FormErrorMessage>
+                    {errors.username && errors.username.message}
+                  </FormErrorMessage>
+                </FormControl>
+                <FormControl id="email" isInvalid={!!errors?.email?.message}>
+                  <Input
+                    name="email"
+                    placeholder="Email"
+                    bg={"gray.100"}
+                    border={0}
+                    color={"gray.500"}
+                    _placeholder={{
+                      color: "gray.500"
+                    }}
+                    ref={register}
+                  />
+                  <FormErrorMessage>
+                    {errors.email && errors.email.message}
+                  </FormErrorMessage>
+                </FormControl>
+                <FormControl
+                  id="password"
+                  isInvalid={!!errors?.password?.message}
+                >
+                  <Input
+                    name="password"
+                    placeholder="Password"
+                    type="password"
+                    bg={"gray.100"}
+                    border={0}
+                    color={"gray.500"}
+                    _placeholder={{
+                      color: "gray.500"
+                    }}
+                    ref={register}
+                  />
+                  <FormErrorMessage>
+                    {errors.password && errors.password.message}
+                  </FormErrorMessage>
+                </FormControl>
+              </Stack>
 
-            <Button
-              fontFamily={"heading"}
-              mt={8}
-              w={"full"}
-              bgGradient="linear(to-r, red.400,pink.400)"
-              color={"white"}
-              _hover={{
-                bgGradient: "linear(to-r, red.400,pink.400)",
-                boxShadow: "xl"
-              }}
-            >
-              Submit
-            </Button>
+              <Stack spacing={6}>
+                <Button
+                  type="submit"
+                  isLoading={formState.isSubmitting}
+                  fontFamily={"heading"}
+                  mt={8}
+                  w={"full"}
+                  bgGradient="linear(to-r, red.400,pink.400)"
+                  color={"white"}
+                  _hover={{
+                    bgGradient: "linear(to-r, red.400,pink.400)",
+                    boxShadow: "xl"
+                  }}
+                >
+                  Submit
+                </Button>
+              </Stack>
+            </form>
           </Box>
-          form
         </Stack>
       </Container>
       <Blur

@@ -21,12 +21,18 @@ import {
   BrowserHistory
 } from "react-router-dom";
 
-function App() {
+function App({ location }) {
+  // const { subscription } = location.state;
   const [user, setUser] = useState(null);
   const [notes, setNotes] = useState([]);
   const [showAll, setShowAll] = useState(true);
+  const [subscription, setSubscription] = useState();
   const [errorMessage, setErrorMessage] = useState(null);
 
+  if (location && location.state.subscription) {
+    console.log(location.state.subscription, "full props");
+    setSubscription(location.state.subscription);
+  }
   // LOG IN
   useEffect(() => {
     const loggedUserJSON = window.localStorage.getItem("loggedUser");
@@ -146,7 +152,13 @@ function App() {
             path="/login"
             render={(props) => <Login {...props} handleLogin={handleLogin} />}
           />
-          <Route path="/sign-up" component={Signup} />
+          <Route
+            path="/sign-up"
+            component={Signup}
+            render={(props) => (
+              <Signup {...props} handleSignup={handleSignup} />
+            )}
+          />
           <Route path="/video" component={Video} />
           <Route path="/payment" component={Payment} />
         </Switch>

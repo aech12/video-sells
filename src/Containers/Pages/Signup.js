@@ -8,11 +8,17 @@ const Signup = () => {
   const [redirect, setRedirect] = useState(false);
   const [user, setUser] = useState({});
 
-  const handleSubmit = async ({ username, email, password }) => {
+  const handleSubmit2 = async ({ username, email, password }) => {
     const clientId = await createStripeCustomer();
     setUser({ username, email, password, clientId });
     // console.log(values);
     // setRedirect(true);
+  };
+
+  const handleSubmit = ({ username, email, password }) => {
+    setUser({ username, password });
+    // console.log(values);
+    setRedirect(true);
   };
 
   return (
