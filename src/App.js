@@ -4,15 +4,12 @@ import axios from "axios";
 import api from "./services/api";
 import Navbar from "./Components/Navbar";
 import Footer from "./Components/Footer";
-import StripeCheckout from "./Components/StripeCheckout";
 import Payment from "./Containers/Pages/Payment";
 import Main from "./Containers/Main";
-import TopVideos from "./Containers/TopVideos";
 import Signup from "./Containers/Pages/Signup";
 // import Login from "./Containers/Login";
 import Login from "./Components/LoginForm";
 import Video from "./Containers/Video";
-import Register from "./Containers/Register";
 import {
   BrowserRouter as Router,
   Switch,
@@ -21,18 +18,12 @@ import {
   BrowserHistory
 } from "react-router-dom";
 
-function App({ location }) {
-  // const { subscription } = location.state;
+function App() {
   const [user, setUser] = useState(null);
   const [notes, setNotes] = useState([]);
   const [showAll, setShowAll] = useState(true);
-  const [subscription, setSubscription] = useState();
   const [errorMessage, setErrorMessage] = useState(null);
 
-  if (location && location.state.subscription) {
-    console.log(location.state.subscription, "full props");
-    setSubscription(location.state.subscription);
-  }
   // LOG IN
   useEffect(() => {
     const loggedUserJSON = window.localStorage.getItem("loggedUser");
@@ -82,55 +73,9 @@ function App({ location }) {
     }
   };
 
-  // const stripeComp = () => {
-  //   const stripe = useStripe();
-  // const elements = useElements();
-  //   return (
-  //     <button
-  //       onClick={() => {
-  //         async function some() {
-  //           // Call Stripe.js method to redirect to the new Checkout page
-  //           // const stripe = await stripePromise
-  //           stripe
-  //             .redirectToCheckout({
-  //               sessionId:
-  //                 "cs_test_a1qvJuk0dEuCuR1O227zBr7fBzYN3W6YgNAEq7X52ez3ppomMzbHnU41DU"
-  //             })
-  //             .then((res) => console.log(res));
-  //         }
-  //         some();
-  //       }}
-  //     >
-  //       STRIPE
-  //     </button>
-  //   );
-  // };
-
   return (
     <>
       <Router history={BrowserHistory}>
-        {/* {
-          <button
-            onClick={() => {
-              // Call Stripe.js method to redirect to the new Checkout page
-              // const stripe = useStripe();
-              stripe
-                .redirectToCheckout({
-                  sessionId:
-                    "cs_test_a1qvJuk0dEuCuR1O227zBr7fBzYN3W6YgNAEq7X52ez3ppomMzbHnU41DU"
-                })
-                .then((res) => console.log("res", res));
-              console.log("on some");
-            }}
-          >
-            STRIPE
-          </button>
-        } */}
-        {/* <Elements stripe={stripePromise}> */}
-        {/* <ElementsConsumer> */}
-        {/* <StripeCheckout /> */}
-        {/* </ElementsConsumer> */}
-        {/* </Elements> */}
         <Navbar />
         <Link to="/"> home </Link>
         <Link to="/login">Login </Link>
@@ -138,16 +83,7 @@ function App({ location }) {
         <Link to="/video">Video </Link>
         <Link to="/payment">Pay </Link>
         <Switch>
-          <Route path="/" exact>
-            <Main />
-            <TopVideos />
-            <Route
-              path="/sign-up"
-              render={(props) => (
-                <Signup {...props} handleSignup={handleSignup} />
-              )}
-            />
-          </Route>
+          <Route path="/" exact component={Main} />
           <Route
             path="/login"
             render={(props) => <Login {...props} handleLogin={handleLogin} />}
