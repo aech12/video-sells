@@ -1,7 +1,7 @@
 import { useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
 import { useState } from "react";
-import axios from "axios";
-import PaymentForm from "../Components/PaymentForm";
+import PaymentForm from "../../Components/PaymentForm";
+import { createSubscription } from "../apicalls";
 
 export default function SignupForm({
   username,
@@ -26,13 +26,11 @@ export default function SignupForm({
   // const handleSubmit = (v) => console.log("vak", v);
 
   const handleSubmit = async ({ cardElement, name }) => {
-    console.log("vak", cardElement, name);
-
     let { error, paymentMethod } = await stripe.createPaymentMethod({
       type: "card",
       card: cardElement,
       billing_details: {
-        name: name
+        name
       }
     });
     if (error) {
@@ -40,13 +38,13 @@ export default function SignupForm({
       setMessage(error.message);
       return;
     }
+    console.log("!!!!", paymentMethod, message);
 
-    let { subError, subscription } = await axios
-      .post("/create-subscription", {
-        priceKey,
-        paymentMethodId: paymentMethod.id
-      })
-      .then((r) => r.json());
+    let { subError, subscription } = await createSubscription({
+      customerId: StripeClientId,
+      priceKey,
+      paymentMethodId: paymentMethod.id
+    });
     if (subError) {
       // show error and collect new card details.
       setMessage(subError.message);

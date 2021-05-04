@@ -6,6 +6,7 @@ todo
 - payment with sign up
 - /account
 - /video
+- /girls
 - orgnize components
 - rewrite css
 - testing
