@@ -9,6 +9,7 @@ todo
 - /girls
 - orgnize components
 - rewrite css
-- testing
 - wordpress react
 - setMessages (popups)
+- handle stripe payment failure
+- testing

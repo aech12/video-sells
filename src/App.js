@@ -3,13 +3,14 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import api from "./services/api";
 import Navbar from "./Components/Navbar";
+import Main from "./Containers/Main";
 import Footer from "./Components/Footer";
 import Payment from "./Containers/Pages/Payment";
-import Main from "./Containers/Main";
 import Signup from "./Containers/Pages/Signup";
 // import Login from "./Containers/Login";
 import Login from "./Components/LoginForm";
-import Video from "./Containers/Video";
+import Account from "./Components/Account";
+import Video from "./Containers/Pages/Video";
 import {
   BrowserRouter as Router,
   Switch,
@@ -76,12 +77,12 @@ function App() {
   return (
     <>
       <Router history={BrowserHistory}>
-        <Navbar />
-        <Link to="/"> home </Link>
+        <Navbar loggedIn={false} />
         <Link to="/login">Login </Link>
         <Link to="/sign-up">SignUp </Link>
         <Link to="/video">Video </Link>
         <Link to="/payment">Pay </Link>
+        <Link to="/account">Acc </Link>
         <Switch>
           <Route path="/" exact component={Main} />
           <Route
@@ -97,6 +98,7 @@ function App() {
           />
           <Route path="/video" component={Video} />
           <Route path="/payment" component={Payment} />
+          <Route path="/account" component={Account} />
         </Switch>
         <Footer />
       </Router>
