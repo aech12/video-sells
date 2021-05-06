@@ -18,6 +18,8 @@ import {
   Link,
   BrowserHistory
 } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.min.css";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -102,6 +104,15 @@ function App() {
         </Switch>
         <Footer />
       </Router>
+      <ToastContainer
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        draggable={false}
+        pauseOnHover
+      />
     </>
   );
 }
