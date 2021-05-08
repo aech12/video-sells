@@ -7,8 +7,8 @@ const Main = ({ location }) => {
 
   useEffect(() => {
     if (location.state) {
-      console.log(subscription, "full props");
       setSubscription(location.state.subscription);
+      console.log(subscription, "Main subscription from Payment");
     }
   }, [subscription]);
 

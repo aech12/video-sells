@@ -1,12 +1,14 @@
 import axios from "axios";
-
 const baseUrl = "http://localhost:3001";
 
-const createUserAccount = ({ username, email, password }) =>
-  axios.post(`${baseUrl}/signup`, { username, email, password });
-// .then((r) => r.data.customer)
-// .catch((e) => e);
+// LOGIN / SIGN UP
+const login = ({ username, password }) =>
+  axios.post(`${baseUrl}/login`, { username, password });
 
+const createUserAccount = ({ username, email, password, clientId }) =>
+  axios.post(`${baseUrl}/signup`, { username, email, password, clientId });
+
+// STRIPE
 const createStripeCustomer = async (email) =>
   axios.post(`${baseUrl}/stripe/create-customer`, { email });
 
@@ -20,4 +22,4 @@ const createSubscription = async ({ customerId, priceKey, paymentMethodId }) =>
     .then((r) => r.data.customer)
     .catch((e) => console.error(e));
 
-export { createStripeCustomer, createSubscription, createUserAccount };
+export { login, createStripeCustomer, createSubscription, createUserAccount };
