@@ -5,12 +5,13 @@ import { useState, useEffect } from "react";
 const Main = ({ location }) => {
   const [subscription, setSubscription] = useState();
 
+  // DOESNT HAVE TO BE USEFFECT, FIX
   useEffect(() => {
     if (location.state) {
       setSubscription(location.state.subscription);
       console.log(subscription, "Main subscription from Payment");
     }
-  }, [subscription]);
+  }, [subscription, location.state]);
 
   return (
     <>

@@ -10,7 +10,7 @@ import { notifyErr } from "../../services/notify";
 import { useInput } from "../../services/utils";
 import { Redirect } from "react-router-dom";
 
-const AccountPage = ({ user, setUser }) => {
+const AdminPage = ({ user, setUser }) => {
   const new_email = useInput();
   const new_password = useInput();
 
@@ -74,4 +74,4 @@ const AccountPage = ({ user, setUser }) => {
   );
 };
 
-export default AccountPage;
+export default AdminPage;

@@ -1,40 +1,81 @@
 import { useState } from "react";
 import { Redirect, withRouter } from "react-router-dom";
 import SignupForm from "../../Components/SignupForm";
-import { createStripeCustomer } from "../apicalls";
+import {
+  createUserAccount,
+  createStripeCustomer
+} from "../../services/apicalls";
+import { notifyErr, notifySuccess } from "../../services/notify";
 
 const Signup = () => {
-  const [priceKey, setPriceKey] = useState("");
   const [redirect, setRedirect] = useState(false);
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState({ clientId: "" });
+  const [active, setActive] = useState("");
+  const [clientId, setClientId] = useState();
 
-  const handleSubmit2 = async ({ username, email, password }) => {
-    const clientId = await createStripeCustomer();
-    setUser({ username, email, password, clientId });
-    // console.log(values);
-    // setRedirect(true);
-  };
+  const handleSubmit = async ({ username, email, password }) => {
+    switch (active) {
+      case "plan 1":
+        setActive("price_1IfwBvCxlsK8q03cgGixs6My");
+        break;
+      case "plan 2":
+        setActive("price_1IfwExCxlsK8q03chdBGFhvY");
+        break;
+      case "plan 3":
+        setActive("price_1IfwDLCxlsK8q03c3GGKCEwP");
+        break;
+      default:
+        notifyErr("You need to select a plan!");
+        return;
+    }
 
-  const handleSubmit = ({ username, email, password }) => {
-    setUser({ username, password });
-    // console.log(values);
-    setRedirect(true);
+    const clientId = await createStripeCustomer(email)
+      .then((r) => r.data)
+      .catch((e) => {
+        notifyErr(e.response.data);
+        console.error("Error on Stripe Client Creation", e);
+      });
+    // console.log("new", clientId);
+
+    if (clientId) {
+      // console.log(clientId);
+      const newUser = await createUserAccount({
+        username,
+        email,
+        password,
+        clientId
+      })
+        .then((r) => r.data)
+        .catch((e) => {
+          notifyErr(e.response.data);
+          console.error("Error on Sign up", e);
+        });
+      setClientId(newUser.clientId);
+      notifySuccess("Account created!");
+      // console.log("u2", newUser, user, "id", clientId);
+      if (clientId) setRedirect(true);
+    } else {
+      return;
+    }
   };
 
   return (
     <>
       {!redirect ? (
-        <SignupForm setPriceKey={setPriceKey} handleSubmit={handleSubmit} />
+        <>
+          <SignupForm
+            handleSubmit={handleSubmit}
+            setActive={setActive}
+            active={active}
+          />
+        </>
       ) : (
         <Redirect
           to={{
             pathname: "/payment",
             state: {
-              username: user.username,
-              password: user.password,
-              email: user.email,
-              priceKey: "basic",
-              StripeClientId: user.clientId
+              priceKey: active,
+              StripeClientId: clientId
             }
           }}
         />

@@ -1,15 +1,21 @@
-import { useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
+import { useStripe, useElements } from "@stripe/react-stripe-js";
 import { useState } from "react";
 import PaymentForm from "../../Components/PaymentForm";
 import { Redirect, withRouter } from "react-router-dom";
-import { createSubscription } from "../apicalls";
+import { createSubscription } from "../../services/apicalls";
+import {
+  notifyErr,
+  notifySuccess,
+  notifyInfo,
+  notifyWarn
+} from "../../services/notify";
 
 const Payment = ({ location }) => {
-  const { username, password, email, priceKey, StripeClientId } =
-    location.state || {};
-  const [message, setMessage] = useState("");
+  let { priceKey, StripeClientId } = location.state || {};
   const [subscription, setSubscription] = useState();
-  const [userForDB, setUserForDB] = useState({ username, password, email });
+
+  priceKey = "price_1IfwDLCxlsK8q03c3GGKCEwP";
+  StripeClientId = "secondUser";
 
   const stripe = useStripe();
   const elements = useElements();
@@ -21,8 +27,8 @@ const Payment = ({ location }) => {
   }
 
   // const handleSubmit = (v) => console.log("vak", v);
-
   const handleSubmit = async ({ cardElement, name }) => {
+    // console.log(cardElement, name);
     let { error, paymentMethod } = await stripe.createPaymentMethod({
       type: "card",
       card: cardElement,
@@ -32,10 +38,10 @@ const Payment = ({ location }) => {
     });
     if (error) {
       // show error and collect new card details.
-      setMessage(error.message);
+      notifyErr(error.message);
       return;
     }
-    console.log("!!!!", paymentMethod, message);
+    // console.log("!!!!", paymentMethod, message);
 
     let { subError, subscription } = await createSubscription({
       customerId: StripeClientId,
@@ -44,21 +50,21 @@ const Payment = ({ location }) => {
     });
     if (subError) {
       // show error and collect new card details.
-      setMessage(subError.message);
+      notifyErr(subError.message);
       return;
     }
 
-    setMessage(`Subscription created with status: ${subscription.status}`);
+    notifySuccess(`Subscription created with status: ${subscription.status}`);
     setSubscription(subscription);
 
     switch (subscription.status) {
       case "active":
         // Redirect to account page
-        setMessage("Success! Redirecting to your account.");
+        notifySuccess("Success! Redirecting to your account.");
         break;
 
       case "incomplete":
-        setMessage("Please confirm the payment.");
+        notifyInfo("Please confirm the payment.");
 
         // Handle next actions
         //
@@ -72,15 +78,15 @@ const Payment = ({ location }) => {
         );
 
         if (error) {
-          setMessage(error.message);
+          notifyErr(error.message);
         } else {
-          setMessage("Success! Redirecting to your account.");
+          notifySuccess("Success! Redirecting to your account.");
           setSubscription({ status: "active" });
         }
         break;
 
       default:
-        setMessage(`Unknown Subscription status: ${subscription.status}`);
+        notifyWarn(`Unknown Subscription status: ${subscription.status}`);
     }
   };
 

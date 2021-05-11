@@ -8,8 +8,10 @@ import Footer from "./Components/Footer";
 import Payment from "./Containers/Pages/Payment";
 import Signup from "./Containers/Pages/Signup";
 import Login from "./Containers/Pages/Login";
-import Account from "./Components/Account";
-import Video from "./Containers/Pages/Video";
+import Account from "./Containers/Pages/Account";
+import Admin from "./Containers/Content/Admin";
+import Video from "./Containers/Content/Video";
+import Girls from "./Containers/Content/Girls";
 import {
   BrowserRouter as Router,
   Switch,
@@ -26,8 +28,12 @@ function App() {
   const [showAll, setShowAll] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
 
-  // useEffect(() => {
-  // }, []);
+  useEffect(() => {
+    const isUserLoggedIn = window.localStorage.getItem("loggedUser");
+    if (isUserLoggedIn) {
+      setUser(isUserLoggedIn);
+    }
+  }, []);
 
   return (
     <>
@@ -38,6 +44,8 @@ function App() {
         <Link to="/video">Video </Link>
         <Link to="/payment">Pay </Link>
         <Link to="/account">Acc </Link>
+        <Link to="/admin">Admin </Link>
+        <Link to="/model">Model </Link>
         <Switch>
           <Route path="/" exact component={Main} />
           <Route
@@ -49,8 +57,20 @@ function App() {
           <Route path="/sign-up" component={Signup} />
           <Route path="/video" component={Video} />
           <Route path="/payment" component={Payment} />
-          <Route path="/account" component={Account} />
+          <Route
+            path="/account"
+            render={(props) => (
+              <Account {...props} user={user} setUser={setUser} />
+            )}
+          />
+          <Route
+            path="/admin"
+            render={(props) => (
+              <Admin {...props} user={user} setUser={setUser} />
+            )}
+          />
         </Switch>
+        <Route path="/model" component={Girls} />
         <Footer />
       </Router>
       <ToastContainer

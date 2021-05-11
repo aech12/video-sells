@@ -3,13 +3,13 @@ Microsoft Azure for video storage.
 
 todo
 
-- payment with sign up
-- /account
 - /video
 - /girls
-- orgnize components
-- rewrite css
-- wordpress react
-- setMessages (popups)
+- /admin
+- /main
+- auth/auth Admin | User
+- write css
 - handle stripe payment failure
 - testing
+
+- wordpress react
