@@ -38,24 +38,14 @@ export default function LoginForm(props) {
             <Heading fontSize={"2xl"}>Member Login</Heading>
             <FormControl id="username" isInvalid={!!errors?.username?.message}>
               <FormLabel>Username</FormLabel>
-              <Input
-                value="user7"
-                name="username"
-                type="username"
-                ref={register}
-              />
+              <Input name="username" type="username" ref={register} />
               <FormErrorMessage>
                 {errors.username && errors.username.message}
               </FormErrorMessage>
             </FormControl>
             <FormControl id="password" isInvalid={!!errors?.password?.message}>
               <FormLabel>Password</FormLabel>
-              <Input
-                value="666666"
-                name="password"
-                type="password"
-                ref={register}
-              />
+              <Input name="password" type="password" ref={register} />
               <FormErrorMessage>
                 {errors.password && errors.password.message}
               </FormErrorMessage>
@@ -66,7 +56,7 @@ export default function LoginForm(props) {
                 align={"start"}
                 justify={"space-between"}
               >
-                <Checkbox>Remember me</Checkbox>
+                {/* <Checkbox>Remember me</Checkbox> */}
                 <Link color={"blue.500"}>Forgot password?</Link>
               </Stack>
               <Button

@@ -10,7 +10,8 @@ import Signup from "./Containers/Pages/Signup";
 import Login from "./Containers/Pages/Login";
 import Account from "./Containers/Pages/Account";
 import Admin from "./Containers/Content/Admin";
-import Video from "./Containers/Content/Video";
+import Video from "./Containers/Content/VideoPage";
+import Girl from "./Containers/Content/GirlPage";
 import Girls from "./Containers/Content/Girls";
 import {
   BrowserRouter as Router,
@@ -42,10 +43,23 @@ function App() {
         <Link to="/login">Login </Link>
         <Link to="/sign-up">SignUp </Link>
         <Link to="/video">Video </Link>
+        <Link to="/girl">Video </Link>
         <Link to="/payment">Pay </Link>
         <Link to="/account">Acc </Link>
         <Link to="/admin">Admin </Link>
-        <Link to="/model">Model </Link>
+        <Link to="/models">Models </Link>
+        <Link
+          to={{
+            pathname: "/model/Anastasia",
+            state: {
+              name: "Anastasia Sophia",
+              age: "Date ()",
+              picture: "pic.jpg"
+            }
+          }}
+        >
+          Model
+        </Link>
         <Switch>
           <Route path="/" exact component={Main} />
           <Route
@@ -70,7 +84,8 @@ function App() {
             )}
           />
         </Switch>
-        <Route path="/model" component={Girls} />
+        <Route path="/models" exact component={Girls} />
+        <Route path="/model/:id" component={Girl} />
         <Footer />
       </Router>
       <ToastContainer

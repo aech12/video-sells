@@ -1,4 +1,4 @@
-import Video from "../../Components/Video";
+import Video from "../../Components/Content/Video";
 
 const VideoPage = () => {
   return (

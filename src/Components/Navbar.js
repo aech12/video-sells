@@ -23,7 +23,7 @@ import {
 } from "@chakra-ui/icons";
 import { Link as RouterLink } from "react-router-dom";
 
-export default function Navbar() {
+export default function Navbar({ loggedIn }) {
   const { isOpen, onToggle } = useDisclosure();
 
   return (
@@ -63,44 +63,67 @@ export default function Navbar() {
           </Text>
 
           <Flex display={{ base: "none", md: "flex" }} ml={10}>
-            <DesktopNav />
+            <DesktopNav loggedIn={loggedIn} />
           </Flex>
         </Flex>
 
-        <Stack
-          flex={{ base: 1, md: 0 }}
-          justify={"flex-end"}
-          direction={"row"}
-          spacing={6}
-        >
-          <Button
-            display={{ base: "none", md: "inline-flex" }}
-            // as={"a"}
-            fontSize={"sm"}
-            fontWeight={400}
-            variant={"link"}
-            href={"#"}
+        {loggedIn ? (
+          <Stack
+            flex={{ base: 1, md: 0 }}
+            justify={"flex-end"}
+            direction={"row"}
+            spacing={6}
           >
-            <RouterLink to="/login">Login</RouterLink>
-          </Button>
-          <Button
-            display={{ base: "inline-flex" }}
-            fontSize={"sm"}
-            fontWeight={600}
-            color={"white"}
-            bg={"pink.400"}
-            href={"#"}
-            _hover={{
-              bg: "pink.300"
-            }}
+            <Button
+              display={{ base: "inline-flex" }}
+              fontSize={"sm"}
+              fontWeight={600}
+              color={"white"}
+              bg={"pink.400"}
+              href={"#"}
+              _hover={{
+                bg: "pink.300"
+              }}
+            >
+              <RouterLink to="/account">Account</RouterLink>
+            </Button>
+          </Stack>
+        ) : (
+          <Stack
+            flex={{ base: 1, md: 0 }}
+            justify={"flex-end"}
+            direction={"row"}
+            spacing={6}
           >
-            <RouterLink to="/login">Join Now</RouterLink>
-          </Button>
-        </Stack>
+            <Button
+              display={{ base: "none", md: "inline-flex" }}
+              // as={"a"}
+              fontSize={"sm"}
+              fontWeight={400}
+              variant={"link"}
+              href={"#"}
+            >
+              <RouterLink to="/login">Login</RouterLink>
+            </Button>
+            <Button
+              display={{ base: "inline-flex" }}
+              fontSize={"sm"}
+              fontWeight={600}
+              color={"white"}
+              bg={"pink.400"}
+              href={"#"}
+              _hover={{
+                bg: "pink.300"
+              }}
+            >
+              <RouterLink to="/sign-up">Join Now</RouterLink>
+            </Button>
+          </Stack>
+        )}
       </Flex>
 
       <Collapse in={isOpen} animateOpacity>
-        <MobileNav />
+        <MobileNav loggedIn={loggedIn} />
       </Collapse>
     </Box>
   );
@@ -195,7 +218,7 @@ const DesktopSubNav = ({ label, href, subLabel, displayDesktop }: NavItem) => {
   );
 };
 
-const MobileNav = () => {
+const MobileNav = ({ loggedIn }) => {
   return (
     <Stack
       bg={useColorModeValue("white", "gray.800")}
@@ -204,19 +227,20 @@ const MobileNav = () => {
     >
       {NAV_ITEMS.map((navItem) => (
         <RouterLink key={navItem.label} to={`${navItem.href}`}>
-          <MobileNavItem {...navItem} />
+          <MobileNavItem {...navItem} loggedIn={loggedIn} />
         </RouterLink>
       ))}
     </Stack>
   );
 };
 
-const MobileNavItem = ({ label, children, href }: NavItem) => {
+const MobileNavItem = ({ label, children, href, loggedIn }: NavItem) => {
   const { isOpen, onToggle } = useDisclosure();
 
   return (
     <Stack spacing={4} onClick={children && onToggle}>
       <Flex
+        display={loggedIn && href === "/login" ? "none" : "flex"}
         py={2}
         // as={Link}
         href={href ?? "#"}
@@ -283,7 +307,7 @@ const NAV_ITEMS: Array<NavItem> = [
     href: "/top-videos"
   },
   {
-    label: "New",
+    label: "New Videos",
     href: "/new-videos"
   },
   {

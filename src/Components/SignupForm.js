@@ -1,3 +1,6 @@
+import { useForm } from "react-hook-form";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
 import {
   Box,
   Flex,
@@ -16,15 +19,44 @@ import {
   FormControl,
   FormLabel,
   FormErrorMessage,
-  Checkbox
+  Checkbox,
+  VStack,
+  useColorModeValue,
+  List,
+  ListItem,
+  ListIcon,
+  HStack
 } from "@chakra-ui/react";
-import { useForm } from "react-hook-form";
+import { FaCheckCircle } from "react-icons/fa";
+
+const SignupSchema = yup.object().shape({
+  username: yup.string().required(),
+  email: yup.string().email().required(),
+  password: yup.string().min(6).required()
+});
+
+function PriceWrapper({ children }: { children: ReactNode }) {
+  return (
+    <Box
+      mb={4}
+      shadow="base"
+      borderWidth="1px"
+      alignSelf={{ base: "center", lg: "flex-start" }}
+      borderColor={useColorModeValue("gray.200", "gray.500")}
+      borderRadius={"xl"}
+    >
+      {children}
+    </Box>
+  );
+}
 
 export default function SignupForm({
-  setPriceKey,
-  handleSubmit: handleSignup
+  handleSubmit: handleSignup,
+  setActive,
+  active
 }) {
   const { register, handleSubmit, errors, formState } = useForm({
+    // resolver: yupResolver(SignupSchema),
     mode: "onBlur"
   });
   const onSubmit = (values) => {
@@ -63,41 +95,153 @@ export default function SignupForm({
           spacing={{ base: 8 }}
           maxW={{ lg: "lg" }}
         >
-          <Stack spacing={4}>
-            <Heading
-              color={"gray.800"}
-              lineHeight={1.1}
-              fontSize={{ base: "2xl", sm: "3xl", md: "4xl" }}
-            >
-              Join our team
-              <Text
-                as={"span"}
-                bgGradient="linear(to-r, red.400,pink.400)"
-                bgClip="text"
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <Box py={3}>
+              <VStack spacing={2} textAlign="center">
+                <Heading as="h1" fontSize="4xl">
+                  Plans that fit your need
+                </Heading>
+                <Text fontSize="lg" color={"gray.500"}>
+                  Start with 14-day free trial. No credit card needed. Cancel at
+                  anytime.
+                </Text>
+              </VStack>
+              <Stack
+                direction={{ base: "column", md: "row" }}
+                textAlign="center"
+                justify="center"
+                spacing={{ base: 4, lg: 10 }}
+                py={10}
               >
-                !
-              </Text>
-            </Heading>
-            <Text color={"gray.500"} fontSize={{ base: "sm", sm: "md" }}>
-              We’re looking for amazing engineers just like you! Become a part
-              of our rockstar engineering team and skyrocket your career!
-            </Text>
-          </Stack>
-          {/* <form onSubmit={handleSubmit(onSubmit)}> */}
-          <Box mt={10}>
-            <form onSubmit={handleSubmit(onSubmit)}>
-              {/* SELECT PLAN */}
-              <div>
-                <h3>Basic</h3>
-                <p>$10.00 for 1 month</p>
-                <button onClick={setPriceKey("basic")}>Select</button>
-              </div>
-              <div>
-                <h3>Premium</h3>
-                <p>$25.00 for 3 months</p>
-                <button onClick={setPriceKey("premium")}>Select</button>
-              </div>
+                <PriceWrapper>
+                  <Box py={4} px={12}>
+                    <Text fontWeight="500" fontSize="2xl">
+                      Hobby
+                    </Text>
+                    <HStack justifyContent="center">
+                      <Text fontSize="3xl" fontWeight="600">
+                        $
+                      </Text>
+                      <Text fontSize="5xl" fontWeight="900">
+                        10
+                      </Text>
+                      <Text fontSize="3xl" color="gray.500">
+                        /1 month
+                      </Text>
+                    </HStack>
+                  </Box>
+                  <VStack
+                    bg={useColorModeValue("gray.50", "gray.700")}
+                    py={4}
+                    borderBottomRadius={"xl"}
+                  >
+                    <Box w="80%" pt={7}>
+                      <Button
+                        onClick={() => setActive("plan 1")}
+                        w="full"
+                        colorScheme="red"
+                        variant={active === "plan 1" ? "solid" : "outline"}
+                      >
+                        Choose
+                      </Button>
+                    </Box>
+                  </VStack>
+                </PriceWrapper>
 
+                <PriceWrapper>
+                  <Box position="relative">
+                    <Box
+                      position="absolute"
+                      top="-16px"
+                      left="50%"
+                      style={{ transform: "translate(-50%)" }}
+                    >
+                      <Text
+                        textTransform="uppercase"
+                        bg={useColorModeValue("red.300", "red.700")}
+                        px={3}
+                        py={1}
+                        color={useColorModeValue("gray.900", "gray.300")}
+                        fontSize="sm"
+                        fontWeight="600"
+                        rounded="xl"
+                      >
+                        Most Popular
+                      </Text>
+                    </Box>
+                    <Box py={4} px={12}>
+                      <Text fontWeight="500" fontSize="2xl">
+                        Growth
+                      </Text>
+                      <HStack justifyContent="center">
+                        <Text fontSize="3xl" fontWeight="600">
+                          $
+                        </Text>
+                        <Text fontSize="5xl" fontWeight="900">
+                          25
+                        </Text>
+                        <Text fontSize="3xl" color="gray.500">
+                          /3 months
+                        </Text>
+                      </HStack>
+                    </Box>
+                    <VStack
+                      bg={useColorModeValue("gray.50", "gray.700")}
+                      py={4}
+                      borderBottomRadius={"xl"}
+                    >
+                      <Box w="80%" pt={7}>
+                        <Button
+                          onClick={() => {
+                            setActive("plan 2");
+                          }}
+                          w="full"
+                          colorScheme="red"
+                          variant={active === "plan 2" ? "solid" : "outline"}
+                        >
+                          Choose
+                        </Button>
+                      </Box>
+                    </VStack>
+                  </Box>
+                </PriceWrapper>
+                <PriceWrapper>
+                  <Box py={4} px={12}>
+                    <Text fontWeight="500" fontSize="2xl">
+                      Scale
+                    </Text>
+                    <HStack justifyContent="center">
+                      <Text fontSize="3xl" fontWeight="600">
+                        $
+                      </Text>
+                      <Text fontSize="5xl" fontWeight="900">
+                        85
+                      </Text>
+                      <Text fontSize="3xl" color="gray.500">
+                        / year
+                      </Text>
+                    </HStack>
+                  </Box>
+                  <VStack
+                    bg={useColorModeValue("gray.50", "gray.700")}
+                    py={4}
+                    borderBottomRadius={"xl"}
+                  >
+                    <Box w="80%" pt={7}>
+                      <Button
+                        onClick={() => setActive("plan 3")}
+                        w="full"
+                        colorScheme="red"
+                        variant={active === "plan 3" ? "solid" : "outline"}
+                      >
+                        Choose
+                      </Button>
+                    </Box>
+                  </VStack>
+                </PriceWrapper>
+              </Stack>
+            </Box>
+            <Box mt={10}>
               <Stack spacing={4}>
                 <FormControl
                   id="username"
@@ -173,8 +317,8 @@ export default function SignupForm({
                   Submit
                 </Button>
               </Stack>
-            </form>
-          </Box>
+            </Box>
+          </form>
         </Stack>
       </Container>
       <Blur

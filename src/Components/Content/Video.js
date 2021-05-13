@@ -14,15 +14,15 @@ import {
   Stack,
   Image
 } from "@chakra-ui/react";
-import Plyr from 'plyr-react'
-import 'plyr-react/dist/plyr.css'
+import Plyr from "plyr-react";
+import "plyr-react/dist/plyr.css";
 
 const LoginSchema = yup.object().shape({
   username: yup.string().required(),
   password: yup.string().min(8).required()
 });
 
-export default function SplitScreen() {
+export default function Video() {
   const { register, handleSubmit, errors, formState } = useForm({
     resolver: yupResolver(LoginSchema),
     mode: "onBlur"
@@ -33,8 +33,7 @@ export default function SplitScreen() {
   return (
     <Stack minH={"100vh"} direction={{ base: "column", md: "row" }}>
       <Plyr
-      source={
-        {
+        source={{
           type: "video",
           sources: [
             {
@@ -42,9 +41,8 @@ export default function SplitScreen() {
               provider: "youtube"
             }
           ]
-        }
-      }
-    />
+        }}
+      />
       <Flex p={8} flex={1} align={"center"} justify={"center"}>
         <Stack spacing={4} w={"full"} maxW={"md"}>
           <form onSubmit={handleSubmit(onSubmit)}>
