@@ -1,6 +1,3 @@
-import { useForm } from "react-hook-form";
-import * as yup from "yup";
-import { yupResolver } from "@hookform/resolvers/yup";
 import {
   Button,
   Checkbox,
@@ -17,19 +14,7 @@ import {
 import Plyr from "plyr-react";
 import "plyr-react/dist/plyr.css";
 
-const LoginSchema = yup.object().shape({
-  username: yup.string().required(),
-  password: yup.string().min(8).required()
-});
-
-export default function Video() {
-  const { register, handleSubmit, errors, formState } = useForm({
-    resolver: yupResolver(LoginSchema),
-    mode: "onBlur"
-  });
-
-  const onSubmit = (values) => console.log(values);
-
+export default function Video({ name, likes }) {
   return (
     <Stack minH={"100vh"} direction={{ base: "column", md: "row" }}>
       <Plyr
@@ -45,42 +30,8 @@ export default function Video() {
       />
       <Flex p={8} flex={1} align={"center"} justify={"center"}>
         <Stack spacing={4} w={"full"} maxW={"md"}>
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <Heading fontSize={"2xl"}>Member Login</Heading>
-            <FormControl id="username" isInvalid={!!errors?.username?.message}>
-              <FormLabel>Username</FormLabel>
-              <Input name="username" type="username" ref={register} />
-              <FormErrorMessage>
-                {errors.username && errors.username.message}
-              </FormErrorMessage>
-            </FormControl>
-            <FormControl id="password" isInvalid={!!errors?.password?.message}>
-              <FormLabel>Password</FormLabel>
-              <Input name="password" type="password" ref={register} />
-              <FormErrorMessage>
-                {errors.password && errors.password.message}
-              </FormErrorMessage>
-            </FormControl>
-            <Stack spacing={6}>
-              <Stack
-                direction={{ base: "column", sm: "row" }}
-                align={"start"}
-                justify={"space-between"}
-              >
-                <Checkbox>Remember me</Checkbox>
-                <Link color={"blue.500"}>Forgot password?</Link>
-              </Stack>
-              <Button
-                type="submit"
-                isLoading={formState.isSubmitting}
-                colorScheme={"blue"}
-                variant={"solid"}
-                // disabled={!!errors.email || !!errors.password}
-              >
-                Enter
-              </Button>
-            </Stack>
-          </form>
+          name: {name}
+          likes: {likes}
         </Stack>
       </Flex>
       <Flex flex={1}>

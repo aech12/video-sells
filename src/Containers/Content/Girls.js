@@ -1,17 +1,18 @@
 import { useState, useEffect } from "react";
+import { usePageinfo } from "../../services/utils";
 import DisplayGallery from "../../Components/Content/DisplayGallery";
 import Paginate from "../Paginate";
-import { usePageinfo } from "../../services/utils";
+import { baseUrl } from "../../services/utils";
 
-const VideoPage = () => {
+const GirlsPage = () => {
   const girlsPage = usePageinfo();
   const elementsPerPage = 5;
-  const serverGetEndpoint = "";
+  const serverGetEndpoint = ``;
+  const pageToRedirectTo = `${baseUrl}/model`;
   // https://www.youtube.com/watch?v=UrjulNmBlYk&list=PLAs_HEWTa8AYMs0oXb6WN2_-gRVFVKcAO&index=306
 
   return (
     <>
-      GIRLS PAGE
       <DisplayGallery
         galleryHeader={"Models"}
         galleryObjects={girlsPage.data.pageElements}
@@ -21,9 +22,10 @@ const VideoPage = () => {
         setdata={girlsPage.setdata}
         perPage={elementsPerPage}
         serverGetEndpoint={serverGetEndpoint}
+        pageToRedirectTo={pageToRedirectTo}
       />
     </>
   );
 };
 
-export default VideoPage;
+export default GirlsPage;

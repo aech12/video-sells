@@ -16,7 +16,11 @@ import { useState } from "react";
 import { Redirect, withRouter } from "react-router-dom";
 import { baseUrl } from "../../services/utils";
 
-export default function DisplayGallery({ galleryHeader, galleryObjects }) {
+export default function DisplayGallery({
+  galleryHeader,
+  galleryObjects,
+  pageToRedirectTo
+}) {
   const [redirectToPage, setredirectToPage] = useState(false);
 
   const redirectBoolean = (name) => {
@@ -38,7 +42,7 @@ export default function DisplayGallery({ galleryHeader, galleryObjects }) {
       </Box>
       // <Box key={object.id} colSpan={1} bg="blue">
       //   <img
-      //     onClick={()=> redirectBoolean(object.name)}
+      //     onClick={()=> redirectBoolean(`pageToRedirectTo/:${name}`)}
       //     src={object.picture}
       //     alt={object.name}
       //   />
