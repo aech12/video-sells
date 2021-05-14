@@ -3,13 +3,10 @@ Microsoft Azure for video storage.
 
 todo
 
-- /video
-- /girls
-- /admin
-- /main
+- /video /girls /main
+- testing
 - auth/auth Admin | User
 - write css
-- handle stripe payment failure
-- testing
 
+- handle stripe payment failure
 - wordpress react

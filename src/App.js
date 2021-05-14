@@ -43,7 +43,6 @@ function App() {
         <Link to="/login">Login </Link>
         <Link to="/sign-up">SignUp </Link>
         <Link to="/video">Video </Link>
-        <Link to="/girl">Video </Link>
         <Link to="/payment">Pay </Link>
         <Link to="/account">Acc </Link>
         <Link to="/admin">Admin </Link>

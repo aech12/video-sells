@@ -8,6 +8,7 @@ const Paginate = ({ perPage, data, setdata }) => {
   // const [data, setdata] = useState([]);
   const [offset, setoffset] = useState(0);
 
+  // resp = {totalCount (of elems), arrayOfElems}
   useEffect(() => {
     let r = serverResp({ limit: perPage, offset });
     setdata(r);
@@ -38,12 +39,7 @@ const Paginate = ({ perPage, data, setdata }) => {
         { picture: "4 Four" },
         { picture: "5 Five" },
         { picture: "6 Six" },
-        { picture: "7 Seven" },
-        { picture: "8 Eight" },
-        { picture: "9 Nine" },
-        { picture: "10 Ten" },
-        { picture: "11 El" },
-        { picture: "12 Tw" }
+        { picture: "7 Seven" }
       ]
     };
     const ret = { pageElements: r.pageElements.slice(offset, offset + limit) };
