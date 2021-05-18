@@ -1,51 +1,21 @@
 import { useState, useEffect } from "react";
 import ReactPaginate from "react-paginate";
 import axios from "axios";
-import Pagination from "../Components/Pagination";
+// import Pagination from "../Components/Pagination";
 
-const Paginate = ({ perPage, data, setdata }) => {
+const Paginate = ({ perPage, setData, totalGirls }) => {
   const [pageCount, setpageCount] = useState(0);
-  // const [data, setdata] = useState([]);
   const [offset, setoffset] = useState(0);
 
   // resp = {totalCount (of elems), arrayOfElems}
   useEffect(() => {
-    let r = serverResp({ limit: perPage, offset });
-    setdata(r);
-    setpageCount(Math.ceil(r.totalCount / perPage));
+    setData(offset);
+    setpageCount(Math.ceil(totalGirls / perPage));
   }, [0]);
 
   useEffect(() => {
-    loadCommentsFromServer();
+    setData(offset);
   }, [offset]);
-
-  const loadCommentsFromServer = async () => {
-    try {
-      let r = serverResp({ limit: perPage, offset });
-      // const r = await axios.get("https:someurl", { limit: perPage, offset });
-      setdata(r);
-      setpageCount(Math.ceil(r.totalCount / perPage));
-    } catch (e) {
-      console.error(e);
-    }
-  };
-
-  const serverResp = ({ limit, offset }) => {
-    let r = {
-      pageElements: [
-        { picture: "1 One" },
-        { picture: "2 Two" },
-        { picture: "3 Three" },
-        { picture: "4 Four" },
-        { picture: "5 Five" },
-        { picture: "6 Six" },
-        { picture: "7 Seven" }
-      ]
-    };
-    const ret = { pageElements: r.pageElements.slice(offset, offset + limit) };
-    ret.totalCount = r.pageElements.length;
-    return ret;
-  };
 
   const handlePageClick = (d) => {
     let pageSelected = d.selected;
@@ -53,7 +23,6 @@ const Paginate = ({ perPage, data, setdata }) => {
 
     setoffset(offset);
   };
-  console.log("d1", data);
 
   return (
     <>

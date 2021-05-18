@@ -1,14 +1,14 @@
 import { useState, useEffect } from "react";
 import DisplayGallery from "../Components/Content/DisplayGallery";
-import { getTopVideos } from "../services/apicalls_content";
+import { getRecentVideos } from "../services/apicalls_content";
 import { baseUrl } from "../services/utils";
 
-const TopVideos = ({ elementsPerPage, offset }) => {
+const RecentVideos = ({ elementsPerPage, offset }) => {
   const [videos, setVideos] = useState([]);
   const pageToRedirectTo = `${baseUrl}/video`;
 
   useEffect(() => {
-    getTopVideos({ limit: elementsPerPage, offset })
+    getRecentVideos({ limit: elementsPerPage, offset })
       .then((r) => {
         const fetchedVideos = r.pageElements.map((video) => {
           return { id: video.id, name: video.title, picture: video.picture };
@@ -21,7 +21,7 @@ const TopVideos = ({ elementsPerPage, offset }) => {
   return (
     <>
       <DisplayGallery
-        galleryHeader={"Top Videos"}
+        galleryHeader={"Recent Videos"}
         galleryObjects={videos}
         pageToRedirectTo={pageToRedirectTo}
       />
@@ -29,4 +29,4 @@ const TopVideos = ({ elementsPerPage, offset }) => {
   );
 };
 
-export default TopVideos;
+export default RecentVideos;

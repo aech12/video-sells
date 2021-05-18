@@ -42,12 +42,6 @@ const deleteAcc = (username) =>
     .post(`${baseUrl}/account/delete_account`, { username })
     .then((r) => r.data);
 
-// ADMIN
-
-// VIDEOS
-
-// GIRLS
-
 export {
   login,
   createStripeCustomer,

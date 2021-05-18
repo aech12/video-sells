@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import {
   Box,
   Heading,
@@ -23,30 +24,18 @@ export default function DisplayGallery({
 }) {
   const [redirectToPage, setredirectToPage] = useState(false);
 
-  const redirectBoolean = (name) => {
-    const { type } = galleryObjects.type;
-    if (type === "girls") {
-      setredirectToPage(`${baseUrl}/model/:${name}`);
-    } else if (type === "videos") {
-      setredirectToPage(`${baseUrl}/video/:${name}`);
-    }
-  };
   const gallery = galleryObjects.map((object) => {
     return (
-      <Box key={object.id} colSpan={1} bg="blue">
+      <Box key={object.id} colSpan={1} bg="grey">
         <img
-          // src={object.picture}
-          src={testimage}
-          alt="video"
+          onClick={() =>
+            setredirectToPage(`${pageToRedirectTo}/:${object.name}`)
+          }
+          // src={testimage}
+          src={object.picture}
+          alt={object.name}
         />
       </Box>
-      // <Box key={object.id} colSpan={1} bg="blue">
-      //   <img
-      //     onClick={()=> redirectBoolean(`pageToRedirectTo/:${name}`)}
-      //     src={object.picture}
-      //     alt={object.name}
-      //   />
-      // </Box>
     );
   });
 
@@ -88,3 +77,7 @@ export default function DisplayGallery({
     </>
   );
 }
+
+DisplayGallery.propTypes = {
+  galleryObjects: PropTypes.array
+};

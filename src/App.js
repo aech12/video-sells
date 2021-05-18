@@ -29,6 +29,8 @@ function App() {
   const [showAll, setShowAll] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
 
+  const [pics, setpics] = useState([]);
+
   useEffect(() => {
     const isUserLoggedIn = window.localStorage.getItem("loggedUser");
     if (isUserLoggedIn) {

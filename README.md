@@ -8,5 +8,5 @@ todo
 - auth/auth Admin | User
 - write css
 
-- handle stripe payment failure
+- handle stripe payment failure, webhook sub.status
 - wordpress react
