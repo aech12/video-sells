@@ -23,6 +23,8 @@ import {
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
 
+import { useColorMode } from "@chakra-ui/react";
+
 function App() {
   const [user, setUser] = useState(null);
   const [notes, setNotes] = useState([]);
@@ -38,8 +40,13 @@ function App() {
     }
   }, []);
 
+  const { colorMode, toggleColorMode } = useColorMode()
+
   return (
     <>
+    <button onClick={toggleColorMode}>
+        Toggle {colorMode === "light" ? "Dark" : "Light"}
+      </button>
       <Router history={BrowserHistory}>
         <Navbar loggedIn={user} />
         <Link to="/login">Login </Link>
