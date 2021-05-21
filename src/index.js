@@ -15,13 +15,15 @@ const config = {
   initialColorMode: "dark"
 };
 
-const theme = extendTheme({ config });
-
 ReactDOM.render(
   <React.StrictMode>
     <Elements stripe={stripePromise}>
-      <ChakraProvider theme={theme}>
-        {/* <ColorModeScript initialColorMode="dark" /> */}
+      <ChakraProvider
+        theme={extendTheme({
+          config: { useSystemColorMode: false, initialColorMode: "dark" }
+        })}
+      >
+        <ColorModeScript initialColorMode="dark" />
         <App />
       </ChakraProvider>
     </Elements>
