@@ -7,7 +7,7 @@
 //   DarkMode,
 //   extendTheme
 // } from "@chakra-ui/react";
-// import App from "./App2";
+// import App from "./App";
 // import reportWebVitals from "./reportWebVitals";
 // import { Elements } from "@stripe/react-stripe-js";
 // import { loadStripe } from "@stripe/stripe-js";
@@ -39,7 +39,7 @@ import { StrictMode } from "react";
 import ReactDOM from "react-dom";
 import { ChakraProvider, extendTheme, ColorModeScript } from "@chakra-ui/react";
 
-import App from "./App2";
+import App from "./App";
 
 const rootElement = document.getElementById("root");
 ReactDOM.render(

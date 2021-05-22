@@ -150,7 +150,7 @@ const DesktopNav = () => {
                   // color={useColorModeValue("gray.600", "gray.200")}
                   _hover={{
                     textDecoration: "none",
-                    color: useColorModeValue("gray.800", "white")
+                    // color: useColorModeValue("gray.800", "white")
                   }}
                 >
                   {navItem.label}
@@ -162,7 +162,7 @@ const DesktopNav = () => {
               <PopoverContent
                 border={0}
                 boxShadow={"xl"}
-                bg={useColorModeValue("white", "gray.800")}
+                // bg={useColorModeValue("white", "gray.800")}
                 p={4}
                 rounded={"xl"}
                 minW={"sm"}
