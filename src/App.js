@@ -5,14 +5,8 @@ import api from "./services/utils";
 import Navbar from "./Components/Navbar";
 import Main from "./Containers/Main";
 import Footer from "./Components/Footer";
-import Payment from "./Containers/Pages/Payment";
-import Signup from "./Containers/Pages/Signup";
-import Login from "./Containers/Pages/Login";
-import Account from "./Containers/Pages/Account";
-import Admin from "./Containers/Content/Admin";
-import Video from "./Containers/Content/VideoPage";
-import Girl from "./Containers/Content/GirlPage";
-import Girls from "./Containers/Content/Girls";
+import { Admin, Video, Girl, Girls } from "./Containers/Content/exporter";
+import { Payment, Signup, Login, Account } from "./Containers/Pages/exporter";
 import {
   BrowserRouter as Router,
   Switch,
@@ -40,11 +34,11 @@ function App() {
     }
   }, []);
 
-  const { colorMode, toggleColorMode } = useColorMode()
+  const { colorMode, toggleColorMode } = useColorMode();
 
   return (
     <>
-    <button onClick={toggleColorMode}>
+      <button onClick={toggleColorMode}>
         Toggle {colorMode === "light" ? "Dark" : "Light"}
       </button>
       <Router history={BrowserHistory}>
