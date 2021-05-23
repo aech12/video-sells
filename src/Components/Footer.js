@@ -11,6 +11,7 @@ import {
 } from "@chakra-ui/react";
 import { FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa";
 import { ReactNode } from "react";
+import { Link as RouterLink } from "react-router-dom";
 
 const Logo = (props: any) => {
   return (
@@ -79,9 +80,19 @@ export default function Footer() {
         justify={{ base: "center", md: "space-between" }}
         align={{ base: "center", md: "center" }}
       >
-        <Logo />
-        <Button colorScheme="blue">JOIN NOW</Button>
-        <Text>© 2020 Chakra Templates. All rights reserved</Text>
+        <Text fontWeight={600}
+        fontSize={{ base: "4xl" }} color={"white"}>
+          <RouterLink to="/">LOGO</RouterLink>
+        </Text>
+        <Button 
+        bg={"primary"}
+        // colorScheme="blue"
+        >
+          <RouterLink to="/sign-up">
+          JOIN NOW
+          </RouterLink>
+        </Button>
+        <Text>Developed by Alex Howez</Text>
         <Stack direction={"row"} spacing={6}>
           <SocialButton label={"Twitter"} href={"#"}>
             <FaTwitter />

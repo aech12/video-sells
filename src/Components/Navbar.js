@@ -59,7 +59,7 @@ export default function Navbar({ loggedIn }) {
             fontFamily={"heading"}
             color={useColorModeValue("gray.800", "white")}
           >
-            <RouterLink to="/">Logo</RouterLink>
+            <RouterLink to="/">LOGO</RouterLink>
           </Text>
 
           <Flex display={{ base: "none", md: "flex" }} ml={10}>
@@ -110,7 +110,7 @@ export default function Navbar({ loggedIn }) {
               fontSize={"sm"}
               fontWeight={600}
               color={"white"}
-              bg={"pink.400"}
+              bg={"primary"}
               href={"#"}
               _hover={{
                 bg: "pink.300"

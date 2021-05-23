@@ -13,11 +13,10 @@ import {
   Route,
   Link
 } from "react-router-dom";
+import { createBrowserHistory } from "history";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
-import { createBrowserHistory } from "history";
-
-import { useColorMode } from "@chakra-ui/react";
+// import { useColorMode } from "@chakra-ui/react";
 
 const history = createBrowserHistory();
 // check navbar 153 r.hook can only be called inside react func comp
@@ -36,13 +35,13 @@ function App() {
     }
   }, []);
 
-  const { colorMode, toggleColorMode } = useColorMode();
+  // const { colorMode, toggleColorMode } = useColorMode();
 
   return (
     <>
-      <button onClick={toggleColorMode}>
+      {/* <button onClick={toggleColorMode}>
         Toggle {colorMode === "light" ? "Dark" : "Light"}
-      </button>
+      </button> */}
       <Router history={history}>
         <Navbar loggedIn={user} />
         <Link to="/login">Login </Link>

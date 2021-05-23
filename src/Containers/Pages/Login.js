@@ -1,4 +1,4 @@
-import LoginForm from "../../Components/LoginForm";
+import LoginForm from "../../Components/Pages/LoginForm";
 import { login } from "../../services/apicalls";
 import { notifyErr } from "../../services/notify";
 import { setToken } from "../../services/utils";

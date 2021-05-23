@@ -6,7 +6,7 @@ const theme = extendTheme({
     useSystemColorMode: false
   },
   colors: {
-    primary: "#eb237a",
+    primary: "#ff0634",
     secondary: "#23eb58",
     dark: "",
     light: ""

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Redirect, withRouter } from "react-router-dom";
-import SignupForm from "../../Components/SignupForm";
+import SignupForm from "../../Components/Pages/SignupForm";
 import {
   createUserAccount,
   createStripeCustomer
