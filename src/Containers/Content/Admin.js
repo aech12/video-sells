@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Admin from "../../Components/Admin";
+import Admin from "../../Components/Content/Admin";
 import { addGirl, addVideo } from "../../services/apicalls_content";
 import { notifyErr, notifySuccess } from "../../services/notify";
 import { useInput } from "../../services/utils";

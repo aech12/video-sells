@@ -1,15 +1,13 @@
 import {
   Button,
-  Checkbox,
   Flex,
-  FormControl,
-  FormLabel,
-  FormErrorMessage,
   Heading,
   Input,
   Link,
   Stack,
-  Image
+  Image,
+  Box,
+  Text
 } from "@chakra-ui/react";
 import Plyr from "plyr-react";
 import "plyr-react/dist/plyr.css";
@@ -17,32 +15,42 @@ import "plyr-react/dist/plyr.css";
 export default function Video({ name, likes }) {
   return (
     <Stack minH={"100vh"} direction={{ base: "column", md: "row" }}>
-      <Plyr
-        source={{
-          type: "video",
-          sources: [
-            {
-              src: "O4ldGzRVyd8",
-              provider: "youtube"
-            }
-          ]
-        }}
-      />
-      <Flex p={8} flex={1} align={"center"} justify={"center"}>
-        <Stack spacing={4} w={"full"} maxW={"md"}>
-          name: {name}
-          likes: {likes}
-        </Stack>
-      </Flex>
-      <Flex flex={1}>
-        <Image
-          alt={"Login Image"}
-          objectFit={"cover"}
-          src={
-            "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1352&q=80"
-          }
-        />
-      </Flex>
+      <Stack w={["100%"]} maxW={{ md: "60%" }}>
+        <Box px={{ md: "6" }} py={{ md: "4" }} w={"full"}>
+          <Plyr
+            source={{
+              type: "video",
+              sources: [
+                {
+                  src: "O4ldGzRVyd8",
+                  provider: "youtube"
+                }
+              ]
+            }}
+          />
+        </Box>
+        <Flex flex={1}>
+          <Text pl={[4, 8]} textAlign={"left"} fontSize="2xl">
+            Video name {name}
+          </Text>
+        </Flex>
+      </Stack>
+      <Stack
+        bg={"gray.50"}
+        rounded={"xl"}
+        p={{ base: 4, sm: 6, md: 8 }}
+        spacing={{ base: 8 }}
+        maxW={{ lg: "lg" }}
+        maxH={"455px"}
+      >
+        <Text pl={[4, 8]} textAlign={"left"} fontSize="2xl" color={"gray.600"}>
+          Model {name}
+        </Text>
+        {/* <Image src={image_url}/> */}
+        <Text pl={[4, 8]} textAlign={"left"} fontSize="2xl" color={"gray.600"}>
+          Model name {name}
+        </Text>
+      </Stack>
     </Stack>
   );
 }
