@@ -16,14 +16,12 @@ const stripePromise = loadStripe("pk_test_XWrOTD8OWaSHcs3sUxtFZ7664");
 
 ReactDOM.render(
   <React.StrictMode>
-    {/* <Elements stripe={stripePromise}> */}
-    <ChakraProvider
-      theme={theme}
-    >
-      <ColorModeScript initialColorMode="dark" />
-      <App />
-    </ChakraProvider>
-    {/* </Elements> */}
+    <Elements stripe={stripePromise}>
+      <ChakraProvider theme={theme}>
+        <ColorModeScript initialColorMode="dark" />
+        <App />
+      </ChakraProvider>
+    </Elements>
   </React.StrictMode>,
   document.getElementById("root")
 );

@@ -14,7 +14,8 @@ import {
   FormControl,
   FormErrorMessage,
   VStack,
-  HStack
+  HStack,
+  FormLabel
 } from "@chakra-ui/react";
 
 const NewGirlSchema = yup.object().shape({
@@ -72,6 +73,12 @@ export default function Admin({ submitGirl, submitVideo }) {
           <form onSubmit={handleSubmit(onSubmit)}>
             <Box mt={10}>
               <Stack spacing={4}>
+                <FormLabel
+                  textAlign={"center"}
+                  color={useColorModeValue("gray.700", "gray.50")}
+                >
+                  Add Model
+                </FormLabel>
                 <FormControl id="name" isInvalid={!!errors?.name?.message}>
                   <Input
                     name="name"
@@ -111,6 +118,10 @@ export default function Admin({ submitGirl, submitVideo }) {
                   id="profilePic"
                   isInvalid={!!errors?.profilePic?.message}
                 >
+                  <FormLabel
+                    textAlign={"center"}
+                    color={useColorModeValue("gray.700", "gray.50")}
+                  ></FormLabel>
                   <Input
                     type="file"
                     name="profilePic"
@@ -127,7 +138,6 @@ export default function Admin({ submitGirl, submitVideo }) {
                   </FormErrorMessage>
                 </FormControl>
               </Stack>
-
               <Stack spacing={6}>
                 <Button
                   type="submit"
@@ -151,6 +161,12 @@ export default function Admin({ submitGirl, submitVideo }) {
           <form onSubmit={handleSubmit2(onSubmit2)}>
             <Box mt={10}>
               <Stack spacing={4}>
+              <FormLabel
+                  textAlign={"center"}
+                  color={useColorModeValue("gray.700", "gray.50")}
+                >
+                  Add Video
+                </FormLabel>
                 <FormControl
                   id="nameVideo"
                   isInvalid={!!errors2?.nameVideo?.message}
