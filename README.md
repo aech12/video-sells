@@ -10,3 +10,4 @@ todo
 
 - handle stripe payment failure, webhook sub.status
 - wordpress react
+- dont forget yup
