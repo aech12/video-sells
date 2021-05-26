@@ -10,7 +10,8 @@ import {
   Flex,
   Spacer,
   Grid,
-  GridItem
+  GridItem,
+  Image
 } from "@chakra-ui/react";
 import testimage from "../../Files/019.jpg";
 import { useState } from "react";
@@ -23,37 +24,44 @@ export default function DisplayGallery({
   pageToRedirectTo
 }) {
   const [redirectToPage, setredirectToPage] = useState(false);
+  const [elementToRedirect, setelementToRedirect] = useState({});
 
   const gallery = galleryObjects.map((object) => {
     return (
-      <Box key={object.id} colSpan={1} bg="grey">
-        <img
-          onClick={() =>
-            setredirectToPage(`${pageToRedirectTo}/:${object.name}`)
-          }
+      <GridItem key={object.id} colSpan={1} align={"center"}>
+        <Image
+          onClick={() => {
+            setelementToRedirect({ id: object.id, name: object.name });
+            setredirectToPage(`${pageToRedirectTo}/:${object.id}`);
+          }}
           // src={testimage}
           src={object.picture}
           alt={object.name}
         />
-      </Box>
+      </GridItem>
     );
   });
 
   return (
     <>
       {redirectToPage ? (
-        <Redirect to={redirectToPage} />
+        <Redirect
+          to={{
+            pathname: `${redirectToPage}`,
+            state: { ...elementToRedirect }
+          }}
+        />
       ) : (
         <Container maxW={"3xl"}>
           <Stack
             as={Box}
             textAlign={"center"}
             spacing={{ base: 8, md: 14 }}
-            py={{ base: 20, md: 36 }}
+            // py={{ base: 10, md: 16 }}
           >
             <Heading
               fontWeight={600}
-              fontSize={{ base: "2xl", sm: "4xl", md: "6xl" }}
+              fontSize={{ base: "2xl", sm: "4xl", md: "5xl" }}
               lineHeight={"110%"}
             >
               <Text as={"span"} color={"green.400"}>
@@ -65,8 +73,9 @@ export default function DisplayGallery({
             templateColumns={{
               base: "repeat(1, 1fr)",
               sm: "repeat(2, 1fr)",
-              md: "repeat(3, 1fr)"
+              md: "repeat(4, 1fr)"
             }}
+            py={{ base: 6, md: 10 }}
             // templateRows="repeat(1, 1fr)"
             gap={4}
           >

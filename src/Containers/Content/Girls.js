@@ -10,7 +10,7 @@ const GirlsPage = () => {
   const [totalGirls, settotalGirls] = useState(0);
   const elementsPerPage = 5;
   const serverGetEndpoint = ``;
-  const pageToRedirectTo = `${baseUrl}/model`;
+  const pageToRedirectTo = `/model`;
   // https://www.youtube.com/watch?v=UrjulNmBlYk&list=PLAs_HEWTa8AYMs0oXb6WN2_-gRVFVKcAO&index=306
 
   const setData = (offset) => {

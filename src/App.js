@@ -1,22 +1,14 @@
 import React, { useState, useEffect } from "react";
 // import logo from "./Files/logo.svg";
-import axios from "axios";
-import api from "./services/utils";
 import Navbar from "./Components/Navbar";
 import Main from "./Containers/Main";
 import Footer from "./Components/Footer";
 import { Admin, Video, Girl, Girls } from "./Containers/Content/exporter";
 import { Payment, Signup, Login, Account } from "./Containers/Pages/exporter";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
-} from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { createBrowserHistory } from "history";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
-// import { useColorMode } from "@chakra-ui/react";
 
 const history = createBrowserHistory();
 // check navbar 153 r.hook can only be called inside react func comp
@@ -35,13 +27,8 @@ function App() {
     }
   }, []);
 
-  // const { colorMode, toggleColorMode } = useColorMode();
-
   return (
     <>
-      {/* <button onClick={toggleColorMode}>
-        Toggle {colorMode === "light" ? "Dark" : "Light"}
-      </button> */}
       <Router history={history}>
         <Navbar loggedIn={user} />
         <Link to="/login">Login </Link>
@@ -56,7 +43,7 @@ function App() {
             pathname: "/model/Anastasia",
             state: {
               name: "Anastasia Sophia",
-              age: "Date ()",
+              age: 18,
               picture: "pic.jpg"
             }
           }}

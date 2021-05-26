@@ -22,10 +22,24 @@ const getRecentVideos = ({ limit, offset }) =>
     .post(`${baseUrl}/video/recent_videos`, { limit, offset })
     .then((r) => r.data);
 
+    const getVideo = (id) =>
+  axios.get(`${baseUrl}/video/:${id}`).then((r) => r.data);
+
 // GIRLS
 const getAllGirls = ({ limit, offset }) =>
   axios
     .post(`${baseUrl}/models/all_models`, { limit, offset })
     .then((r) => r.data);
 
-export { addGirl, addVideo, getTopVideos, getRecentVideos, getAllGirls };
+const getGirl = (id) =>
+  axios.get(`${baseUrl}/models/:${id}`).then((r) => r.data);
+
+export {
+  addGirl,
+  addVideo,
+  getTopVideos,
+  getRecentVideos,
+  getVideo,
+  getAllGirls,
+  getGirl
+};

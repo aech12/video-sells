@@ -11,3 +11,4 @@ todo
 - handle stripe payment failure, webhook sub.status
 - wordpress react
 - dont forget yup
+- why does videopage naot waoark but displaygallery fetch does?

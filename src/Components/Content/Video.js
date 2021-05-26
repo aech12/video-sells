@@ -12,7 +12,28 @@ import {
 import Plyr from "plyr-react";
 import "plyr-react/dist/plyr.css";
 
-export default function Video({ name, likes }) {
+export default function Video({ name, likes, href, girls }) {
+  console.log(typeof girls, likes, href, girls);
+  let modelsInVideo = [];
+  if (girls) {
+    modelsInVideo = girls.map((girl) => {
+      return (
+        <Box>
+          <Text
+            pl={[4, 8]}
+            textAlign={"left"}
+            fontSize="2xl"
+            color={"gray.600"}
+          >
+            {girl.name}
+          </Text>
+          <Image src={girl.picture} />
+        </Box>
+      );
+    });
+  }
+  // console.log(10);
+
   return (
     <Stack minH={"100vh"} direction={{ base: "column", md: "row" }}>
       <Stack w={["100%"]} maxW={{ md: "60%" }}>
@@ -22,7 +43,7 @@ export default function Video({ name, likes }) {
               type: "video",
               sources: [
                 {
-                  src: "O4ldGzRVyd8",
+                  src: href,
                   provider: "youtube"
                 }
               ]
@@ -31,7 +52,7 @@ export default function Video({ name, likes }) {
         </Box>
         <Flex flex={1}>
           <Text pl={[4, 8]} textAlign={"left"} fontSize="2xl">
-            Video name {name}
+            {name}
           </Text>
         </Flex>
       </Stack>
@@ -44,12 +65,9 @@ export default function Video({ name, likes }) {
         maxH={"455px"}
       >
         <Text pl={[4, 8]} textAlign={"left"} fontSize="2xl" color={"gray.600"}>
-          Model {name}
+          Models
         </Text>
-        {/* <Image src={image_url}/> */}
-        <Text pl={[4, 8]} textAlign={"left"} fontSize="2xl" color={"gray.600"}>
-          Model name {name}
-        </Text>
+        {modelsInVideo}
       </Stack>
     </Stack>
   );

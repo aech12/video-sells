@@ -2,10 +2,10 @@ import { useState, useEffect } from "react";
 import DisplayGallery from "../Components/Content/DisplayGallery";
 import { getTopVideos } from "../services/apicalls_content";
 import { baseUrl } from "../services/utils";
-
+import { Box, Button } from "@chakra-ui/react";
 const TopVideos = ({ elementsPerPage, offset }) => {
   const [videos, setVideos] = useState([]);
-  const pageToRedirectTo = `${baseUrl}/video`;
+  const pageToRedirectTo = `/video`;
 
   useEffect(() => {
     getTopVideos({ limit: elementsPerPage, offset })
@@ -25,6 +25,9 @@ const TopVideos = ({ elementsPerPage, offset }) => {
         galleryObjects={videos}
         pageToRedirectTo={pageToRedirectTo}
       />
+      <Box textAlign={"center"}>
+        <Button color={"red.400"}>View More</Button>
+      </Box>
     </>
   );
 };
