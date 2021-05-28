@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Account from "../../Components/Account";
+import Account from "../../Components/Pages/Account";
 import {
   changeAccEmail,
   changeAccPass,

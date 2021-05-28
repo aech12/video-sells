@@ -18,10 +18,20 @@ export default function Video({ name, likes, href, girls }) {
   if (girls) {
     modelsInVideo = girls.map((girl) => {
       return (
-        <Box>
+        <Box
+          display="flex"
+          alignItems="center"
+          justifyContent="space-between"
+          pb="4"
+          // margin="0px"
+          // border="2px"
+          // borderColor="gray.700"
+          minW={["150", "280"]}
+        >
           <Text
-            pl={[4, 8]}
-            textAlign={"left"}
+            // pl={[4, 8]}
+            // textAlign={"left"}
+            // pr="10"
             fontSize="2xl"
             color={"gray.600"}
           >
@@ -35,7 +45,7 @@ export default function Video({ name, likes, href, girls }) {
   // console.log(10);
 
   return (
-    <Stack minH={"100vh"} direction={{ base: "column", md: "row" }}>
+    <Stack minH={"100vh"} direction={{ base: "column", lg: "row" }}>
       <Stack w={["100%"]} maxW={{ md: "60%" }}>
         <Box px={{ md: "6" }} py={{ md: "4" }} w={"full"}>
           <Plyr
@@ -56,19 +66,34 @@ export default function Video({ name, likes, href, girls }) {
           </Text>
         </Flex>
       </Stack>
-      <Stack
+      <Box
         bg={"gray.50"}
         rounded={"xl"}
         p={{ base: 4, sm: 6, md: 8 }}
-        spacing={{ base: 8 }}
-        maxW={{ lg: "lg" }}
-        maxH={"455px"}
+        // spacing={{ base: 8 }}
+        maxW={{ base: "90%", lg: "400px" }}
+        textAlign="center"
+        alignSelf="center"
+        // maxH={"455px"}
       >
-        <Text pl={[4, 8]} textAlign={"left"} fontSize="2xl" color={"gray.600"}>
+        <Text fontSize="2xl" color={"gray.600"}>
           Models
         </Text>
-        {modelsInVideo}
-      </Stack>
+        <Stack
+          direction={["row"]}
+          wrap="wrap"
+          bg={"gray.50"}
+          rounded={"xl"}
+          // p={{ base: 4, sm: 6, md: 8 }}
+          // spacing={{ base: 8 }}
+          maxW={{ lg: "lg" }}
+          // maxH={"455px"}
+          alignItems="center"
+          justifyContent="center"
+        >
+          {modelsInVideo}
+        </Stack>
+      </Box>
     </Stack>
   );
 }

@@ -1,12 +1,15 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import Admin from "../../Components/Content/Admin";
 import { addGirl, addVideo } from "../../services/apicalls_content";
 import { notifyErr, notifySuccess } from "../../services/notify";
 import { useInput } from "../../services/utils";
 import { Redirect } from "react-router-dom";
+import { AuthContext } from "../../services/reducers";
 
 const AdminPage = ({ user, setUser }) => {
-  //https://www.youtube.com/watch?v=Z0PqfNHiwO8&list=PLAs_HEWTa8AYMs0oXb6WN2_-gRVFVKcAO&index=260
+  const {
+    authState: { auth }
+  } = useContext(AuthContext);
 
   const submitGirl = async ({ name, birthday, profilePic }) => {
     const picture = new FormData();
@@ -41,21 +44,31 @@ const AdminPage = ({ user, setUser }) => {
     }
   };
 
-  // if (!user) {
-  //   return <Redirect to={{ pathname: "/" }} />;
-  // }
+  if (!user) {
+    return <Redirect to={{ pathname: "/" }} />;
+  }
 
   return (
-    <Admin
-      submitGirl={submitGirl}
-      submitVideo={submitVideo}
-      // cancelSubscription={cancelSubscription}
-      // deleteAccount={deleteAccount}
-      // logOut={logOut}
-      // new_email={new_email}
-      // new_password={new_password}
-    />
+    <>
+      {auth === "admin" ? (
+        <Admin
+          submitGirl={submitGirl}
+          submitVideo={submitVideo}
+          // cancelSubscription={cancelSubscription}
+          // deleteAccount={deleteAccount}
+          // logOut={logOut}
+          // new_email={new_email}
+          // new_password={new_password}
+        />
+      ) : (
+        <p style={{ textAlign: "center", padding: "15px" }}>
+          You're not logged in as Administrator
+        </p>
+      )}
+    </>
   );
 };
+// {
+// <p>Log in as administrator</p>
 
 export default AdminPage;
