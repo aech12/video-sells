@@ -3,7 +3,6 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import {
   Button,
-  Checkbox,
   Flex,
   FormControl,
   FormLabel,

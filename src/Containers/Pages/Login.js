@@ -8,7 +8,7 @@ import { AuthContext } from "../../services/reducers";
 
 const LoginPage = ({ setUser, user }) => {
   // const { authDispatch, isAuthenticated, value } = useContext(AuthContext);
-  const { authState, authDispatch } = useContext(AuthContext);
+  const { authDispatch } = useContext(AuthContext);
 
   const handleLogin = async (credentials) => {
     try {

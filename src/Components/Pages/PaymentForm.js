@@ -3,23 +3,11 @@ import {
   Flex,
   Stack,
   Heading,
-  Text,
-  Container,
   Input,
   Button,
-  SimpleGrid,
-  Avatar,
-  AvatarGroup,
-  useBreakpointValue,
-  IconProps,
-  Icon,
   FormControl,
-  FormLabel,
-  FormErrorMessage,
-  Checkbox,
-  Link
+  FormErrorMessage
 } from "@chakra-ui/react";
-import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 

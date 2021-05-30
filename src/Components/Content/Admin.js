@@ -5,20 +5,16 @@ import {
   Box,
   Heading,
   Container,
-  Text,
   Button,
   Stack,
   Input,
-  Icon,
   useColorModeValue,
   FormControl,
   FormErrorMessage,
-  VStack,
-  HStack,
   FormLabel
 } from "@chakra-ui/react";
 
-const NewGirlSchema = yup.object().shape({
+const NewModelSchema = yup.object().shape({
   name: yup.string().required(),
   birthday: yup.date().required(),
   picture: yup.string().required(),
@@ -33,7 +29,7 @@ const NewVideoSchema = yup.object().shape({
 
 export default function Admin({ submitGirl, submitVideo }) {
   const { register, handleSubmit, errors, formState } = useForm({
-    // resolver: yupResolver(NewGirlSchema),
+    resolver: yupResolver(NewModelSchema),
     mode: "onBlur"
   });
   const onSubmit = (values) => {
@@ -45,7 +41,7 @@ export default function Admin({ submitGirl, submitVideo }) {
     errors: errors2,
     formState: formState2
   } = useForm({
-    // resolver: yupResolver(NewVideoSchema),
+    resolver: yupResolver(NewVideoSchema),
     mode: "onBlur"
   });
   const onSubmit2 = (values) => {

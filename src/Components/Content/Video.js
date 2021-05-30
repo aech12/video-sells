@@ -1,14 +1,4 @@
-import {
-  Button,
-  Flex,
-  Heading,
-  Input,
-  Link,
-  Stack,
-  Image,
-  Box,
-  Text
-} from "@chakra-ui/react";
+import { Flex, Stack, Image, Box, Text } from "@chakra-ui/react";
 import Plyr from "plyr-react";
 import "plyr-react/dist/plyr.css";
 

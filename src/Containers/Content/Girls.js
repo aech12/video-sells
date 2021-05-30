@@ -1,8 +1,6 @@
-import { useState, useEffect } from "react";
-import { usePageinfo } from "../../services/utils";
+import { useState } from "react";
 import DisplayGallery from "../../Components/Content/DisplayGallery";
 import Paginate from "../Paginate";
-import { baseUrl } from "../../services/utils";
 import { getAllGirls } from "../../services/apicalls_content";
 
 const GirlsPage = () => {

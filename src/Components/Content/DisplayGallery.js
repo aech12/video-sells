@@ -4,19 +4,13 @@ import {
   Heading,
   Container,
   Text,
-  Button,
   Stack,
-  useColorModeValue,
-  Flex,
-  Spacer,
   Grid,
   GridItem,
   Image
 } from "@chakra-ui/react";
-import testimage from "../../Files/019.jpg";
 import { useState } from "react";
-import { Redirect, withRouter } from "react-router-dom";
-import { baseUrl } from "../../services/utils";
+import { Redirect } from "react-router-dom";
 
 export default function DisplayGallery({
   galleryHeader,

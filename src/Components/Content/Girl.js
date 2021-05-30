@@ -1,15 +1,4 @@
-import {
-  Button,
-  Checkbox,
-  Flex,
-  Box,
-  Text,
-  Heading,
-  Input,
-  Link,
-  Stack,
-  Image
-} from "@chakra-ui/react";
+import { Box, Text, Stack, Image } from "@chakra-ui/react";
 
 export default function Girl({ name, age, picture }) {
   return (

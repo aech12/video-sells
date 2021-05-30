@@ -1,7 +1,3 @@
-import { useState, useEffect } from "react";
-import ReactPaginate from "react-paginate";
-import axios from "axios";
-
 const Pagination = ({ data }) => {
   let commentNodes = data.map(function (element, index) {
     return <div key={index}>{element.picture}</div>;

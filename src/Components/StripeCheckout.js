@@ -1,16 +1,4 @@
-import {
-  Button,
-  Checkbox,
-  Flex,
-  FormControl,
-  FormLabel,
-  FormErrorMessage,
-  Heading,
-  Input,
-  Link,
-  Stack,
-  Image
-} from "@chakra-ui/react";
+import { Stack } from "@chakra-ui/react";
 import { useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
 
 export default function StripeCheckout() {

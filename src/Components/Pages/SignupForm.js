@@ -3,7 +3,6 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import {
   Box,
-  Flex,
   Stack,
   Heading,
   Text,
@@ -11,20 +10,13 @@ import {
   Input,
   Button,
   SimpleGrid,
-  Avatar,
-  AvatarGroup,
   useBreakpointValue,
   IconProps,
   Icon,
   FormControl,
-  FormLabel,
   FormErrorMessage,
-  Checkbox,
   VStack,
   useColorModeValue,
-  List,
-  ListItem,
-  ListIcon,
   HStack
 } from "@chakra-ui/react";
 
@@ -56,7 +48,7 @@ export default function SignupForm({
   active
 }) {
   const { register, handleSubmit, errors, formState } = useForm({
-    // resolver: yupResolver(SignupSchema),
+    resolver: yupResolver(SignupSchema),
     mode: "onBlur"
   });
   const onSubmit = (values) => {

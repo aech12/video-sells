@@ -5,10 +5,7 @@ import {
   Text,
   Button,
   Stack,
-  Input,
-  Icon,
-  useColorModeValue,
-  createIcon
+  Input
 } from "@chakra-ui/react";
 
 export default function Account({

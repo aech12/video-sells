@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import Video from "../../Components/Content/Video";
-import { getVideo, getGirl } from "../../services/apicalls_content";
+import { getVideo } from "../../services/apicalls_content";
 import { useParams } from "react-router-dom";
 
 const VideoPage = () => {

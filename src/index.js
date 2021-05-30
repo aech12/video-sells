@@ -1,12 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import theme from "./services/theme";
-import {
-  ChakraProvider,
-  ColorModeScript,
-  DarkMode,
-  extendTheme
-} from "@chakra-ui/react";
+import { ChakraProvider, ColorModeScript } from "@chakra-ui/react";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { Elements } from "@stripe/react-stripe-js";

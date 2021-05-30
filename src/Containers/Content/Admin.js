@@ -1,8 +1,7 @@
-import { useState, useContext } from "react";
+import { useContext } from "react";
 import Admin from "../../Components/Content/Admin";
 import { addGirl, addVideo } from "../../services/apicalls_content";
 import { notifyErr, notifySuccess } from "../../services/notify";
-import { useInput } from "../../services/utils";
 import { Redirect } from "react-router-dom";
 import { AuthContext } from "../../services/reducers";
 
