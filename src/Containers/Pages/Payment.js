@@ -1,6 +1,6 @@
 import { useStripe, useElements } from "@stripe/react-stripe-js";
 import { useState } from "react";
-import PaymentForm from "../../Components/PaymentForm";
+import PaymentForm from "../../Components/Pages/PaymentForm";
 import { Redirect, withRouter } from "react-router-dom";
 import { createSubscription } from "../../services/apicalls";
 import {

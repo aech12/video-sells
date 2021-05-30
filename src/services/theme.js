@@ -10,6 +10,16 @@ const theme = extendTheme({
     secondary: "#23eb58",
     dark: "",
     light: ""
+  },
+  global: {
+    "#react-paginate": {
+      // display: "flex",
+      // justifyContent: "center",
+      li: {
+        display: "block",
+        background: "red"
+      }
+    }
   }
 });
 

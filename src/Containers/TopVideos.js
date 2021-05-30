@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import DisplayGallery from "../Components/Content/DisplayGallery";
 import { getTopVideos } from "../services/apicalls_content";
-import { baseUrl } from "../services/utils";
 import { Box, Button } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
+
 const TopVideos = ({ elementsPerPage, offset }) => {
   const [videos, setVideos] = useState([]);
   const pageToRedirectTo = `/video`;
@@ -25,8 +26,10 @@ const TopVideos = ({ elementsPerPage, offset }) => {
         galleryObjects={videos}
         pageToRedirectTo={pageToRedirectTo}
       />
-      <Box textAlign={"center"}>
-        <Button color={"red.400"}>View More</Button>
+      <Box textAlign={"center"} mb={10}>
+        <Button colorScheme={"blue"}>
+          <Link to="/top-videos">View More </Link>
+        </Button>
       </Box>
     </>
   );

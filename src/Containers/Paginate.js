@@ -4,27 +4,21 @@ import axios from "axios";
 import "./Paginate.css";
 // import Pagination from "../Components/Pagination";
 
-const Paginate = ({ setData, totalElements }) => {
-  const [pageCount, setpageCount] = useState(0);
+const Paginate = ({ setData, totalElements, pageCount, setpageCount }) => {
+  // const [pageCount, setpageCount] = useState(1);
   const [offset, setoffset] = useState(0);
-  const elementsPerPage = 3;
+  const elementsPerPage = 8;
 
   // resp = {totalCount (of elems), arrayOfElems}
   useEffect(() => {
     setData(elementsPerPage, offset);
-    setpageCount(Math.ceil(totalElements / elementsPerPage));
   }, [0]);
-
-  useEffect(() => {
-    setData(elementsPerPage, offset);
-  }, [offset]);
 
   const handlePageClick = (d) => {
     let pageSelected = d.selected;
     let offset = Math.ceil(pageSelected * elementsPerPage);
 
-    console.log("offset", offset);
-
+    setData(elementsPerPage, offset);
     setoffset(offset);
   };
 
@@ -33,6 +27,7 @@ const Paginate = ({ setData, totalElements }) => {
       {/* <Pagination data={data.pageElements} /> */}
       <div id="react-paginate">
         <ReactPaginate
+          // id="react-paginate"
           previousLabel={"previous"}
           nextLabel={"next"}
           breakLabel={"..."}

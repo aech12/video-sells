@@ -10,10 +10,11 @@
 }
 
 #react-paginate li {
-  background: #e8e8e8;
+  background: #171923;
   display: inline-block;
-  border: 1px solid #e8e8e8;
-  color: #000;
+  padding: 6px;
+  /* border: 2px solid #f8f8f8; */
+  color: #f8f8f8;
   cursor: pointer;
   margin-right: 3px;
   border-radius: 5px;
@@ -23,12 +24,12 @@
 #react-paginate li a {
   padding: 2px 5px;
   display: inline-block;
-  color: #000;
   outline: none;
 }
 
 #react-paginate li.active {
-  background: #48bb78;
-  border: 1px solid #48bb78;
+  background: #29538c;
+  /* background: #2ecc71; */
+  /* border: 1px solid #48bb78; */
   outline: none;
 }

@@ -3,7 +3,7 @@ import Video from "../../Components/Content/Video";
 import { getVideo, getGirl } from "../../services/apicalls_content";
 import { useParams } from "react-router-dom";
 
-const VideoPage = (props) => {
+const VideoPage = () => {
   const [video, setvideo] = useState({});
   let { id } = useParams();
   id = id.substring(1);

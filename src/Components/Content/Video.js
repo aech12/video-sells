@@ -23,18 +23,9 @@ export default function Video({ name, likes, href, girls }) {
           alignItems="center"
           justifyContent="space-between"
           pb="4"
-          // margin="0px"
-          // border="2px"
-          // borderColor="gray.700"
           minW={["150", "280"]}
         >
-          <Text
-            // pl={[4, 8]}
-            // textAlign={"left"}
-            // pr="10"
-            fontSize="2xl"
-            color={"gray.600"}
-          >
+          <Text fontSize="2xl" color={"gray.600"}>
             {girl.name}
           </Text>
           <Image src={girl.picture} />

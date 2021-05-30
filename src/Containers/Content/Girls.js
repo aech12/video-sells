@@ -7,8 +7,9 @@ import { getAllGirls } from "../../services/apicalls_content";
 
 const GirlsPage = () => {
   const [girls, setgirls] = useState([]);
-  const [totalGirlsInDB, settotalGirlsInDB] = useState(0);
   const pageToRedirectTo = `/model`;
+  // let totalGirlsInDB = 1;
+  const [pageCount, setpageCount] = useState(1);
 
   const setData = (elementsPerPage, offset) => {
     getAllGirls({ limit: elementsPerPage, offset })
@@ -16,8 +17,9 @@ const GirlsPage = () => {
         const fetchedGirls = r.pageElements.map((girl) => {
           return { id: girl.id, name: girl.name, picture: girl.picture };
         });
+        pageCount !== 1 ||
+          setpageCount(Math.ceil(r.totalCount / elementsPerPage));
         setgirls(fetchedGirls);
-        settotalGirlsInDB(r.totalCount);
       })
       .catch((e) => console.error(e));
   };
@@ -29,7 +31,12 @@ const GirlsPage = () => {
         galleryObjects={girls}
         pageToRedirectTo={pageToRedirectTo}
       />
-      <Paginate setData={setData} totalElements={totalGirlsInDB} />
+      <Paginate
+        setData={setData}
+        // totalElements={totalGirlsInDB}
+        pageCount={pageCount}
+        setpageCount={setpageCount}
+      />
     </>
   );
 };
