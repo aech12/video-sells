@@ -7,20 +7,17 @@ import { getAllGirls } from "../../services/apicalls_content";
 
 const GirlsPage = () => {
   const [girls, setgirls] = useState([]);
-  const [totalGirls, settotalGirls] = useState(0);
-  const elementsPerPage = 5;
-  const serverGetEndpoint = ``;
+  const [totalGirlsInDB, settotalGirlsInDB] = useState(0);
   const pageToRedirectTo = `/model`;
-  // https://www.youtube.com/watch?v=UrjulNmBlYk&list=PLAs_HEWTa8AYMs0oXb6WN2_-gRVFVKcAO&index=306
 
-  const setData = (offset) => {
+  const setData = (elementsPerPage, offset) => {
     getAllGirls({ limit: elementsPerPage, offset })
       .then((r) => {
         const fetchedGirls = r.pageElements.map((girl) => {
           return { id: girl.id, name: girl.name, picture: girl.picture };
         });
         setgirls(fetchedGirls);
-        console.log("dream", fetchedGirls);
+        settotalGirlsInDB(r.totalCount);
       })
       .catch((e) => console.error(e));
   };
@@ -32,12 +29,7 @@ const GirlsPage = () => {
         galleryObjects={girls}
         pageToRedirectTo={pageToRedirectTo}
       />
-      <Paginate
-        setData={setData}
-        perPage={elementsPerPage}
-        serverGetEndpoint={serverGetEndpoint}
-        totalGirls={totalGirls}
-      />
+      <Paginate setData={setData} totalElements={totalGirlsInDB} />
     </>
   );
 };

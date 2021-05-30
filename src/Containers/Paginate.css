@@ -1,0 +1,34 @@
+#react-paginate {
+  display: flex;
+  justify-content: center;
+}
+
+#react-paginate ul {
+  display: inline-block;
+  margin-left: 20px;
+  padding-left: 0;
+}
+
+#react-paginate li {
+  background: #e8e8e8;
+  display: inline-block;
+  border: 1px solid #e8e8e8;
+  color: #000;
+  cursor: pointer;
+  margin-right: 3px;
+  border-radius: 5px;
+  margin-bottom: 5px;
+}
+
+#react-paginate li a {
+  padding: 2px 5px;
+  display: inline-block;
+  color: #000;
+  outline: none;
+}
+
+#react-paginate li.active {
+  background: #48bb78;
+  border: 1px solid #48bb78;
+  outline: none;
+}
