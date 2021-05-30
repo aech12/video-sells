@@ -149,7 +149,7 @@ const DesktopNav = () => {
                   fontWeight={500}
                   // color={useColorModeValue("gray.600", "gray.200")}
                   _hover={{
-                    textDecoration: "none",
+                    textDecoration: "none"
                     // color: useColorModeValue("gray.800", "white")
                   }}
                 >
@@ -311,7 +311,7 @@ const NAV_ITEMS: Array<NavItem> = [
     href: "/new-videos"
   },
   {
-    label: "Girls",
-    href: "/girls"
+    label: "Models",
+    href: "/models"
   }
 ];

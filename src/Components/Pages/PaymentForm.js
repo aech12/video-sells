@@ -38,11 +38,11 @@ export default function PaymentForm(props) {
   };
 
   return (
-    <Stack minH={"100vh"} direction={{ base: "column", md: "row" }}>
-      <Flex p={8} flex={1} align={"center"} justify={"center"}>
-        <Stack spacing={4} w={"full"} maxW={"md"}>
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <Heading fontSize={"2xl"}>Member Login</Heading>
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <Stack minH={"100vh"} direction={{ base: "column", md: "row" }}>
+        <Flex p={8} flex={1} align={"center"} justify={"center"}>
+          <Stack spacing={2} w={"full"} maxW={"md"}>
+            <Heading fontSize={"2xl"}>Payment information</Heading>
             <FormControl id="name" isInvalid={!!errors?.username?.message}>
               <Input
                 name="name"
@@ -59,7 +59,18 @@ export default function PaymentForm(props) {
                 {errors.username && errors.username.message}
               </FormErrorMessage>
             </FormControl>
-            <CardElement />
+            <Box
+              borderRadius="4px"
+              p={"3"}
+              placeholder="Full Name"
+              bg={"gray.100"}
+              color={"gray.500"}
+              _placeholder={{
+                color: "gray.500"
+              }}
+            >
+              <CardElement />
+            </Box>
             <Stack spacing={6}>
               <Button
                 type="submit"
@@ -71,9 +82,9 @@ export default function PaymentForm(props) {
                 Submit
               </Button>
             </Stack>
-          </form>
-        </Stack>
-      </Flex>
-    </Stack>
+          </Stack>
+        </Flex>
+      </Stack>
+    </form>
   );
 }

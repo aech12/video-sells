@@ -1,11 +1,8 @@
-"Porn Castings" SPA with React and Node.js.
-Microsoft Azure for video storage.
+"+18 Castings" SPA with React and Node.js.
 
 todo
 
 - testing
-- auth/auth Admin | User
-- write css
 
 - handle stripe payment failure, webhook sub.status
 - wordpress react

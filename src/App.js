@@ -3,7 +3,14 @@ import React, { useState, useEffect } from "react";
 import Navbar from "./Components/Navbar";
 import Main from "./Containers/Main";
 import Footer from "./Components/Footer";
-import { Admin, Video, Girl, Girls } from "./Containers/Content/exporter";
+import {
+  Admin,
+  Video,
+  Girl,
+  Girls,
+  TopVideos,
+  RecentVideos
+} from "./Containers/Content/exporter";
 import { Payment, Signup, Login, Account } from "./Containers/Pages/exporter";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { createBrowserHistory } from "history";
@@ -42,25 +49,15 @@ function App() {
       >
         <Router history={history}>
           <Navbar loggedIn={user} />
+          <p>Pages available: </p>
           <Link to="/login">Login </Link>
           <Link to="/sign-up">SignUp </Link>
           <Link to="/video/:60a1284e9516230bf0512b43">Video </Link>
           <Link to="/payment">Pay </Link>
-          <Link to="/account">Acc </Link>
+          <Link to="/account">Account </Link>
           <Link to="/admin">Admin </Link>
           <Link to="/models">Models </Link>
-          <Link
-            to={{
-              pathname: "/model/Anastasia",
-              state: {
-                name: "Anastasia Sophia",
-                age: 18,
-                picture: "pic.jpg"
-              }
-            }}
-          >
-            Model
-          </Link>
+          <Link to="/model/:6099449f263275116451e9fb">Model </Link>
           <Switch>
             <Route path="/" exact component={Main} />
             <Route
@@ -87,6 +84,8 @@ function App() {
           </Switch>
           <Route path="/models" exact component={Girls} />
           <Route path="/model/:id" component={Girl} />
+          <Route path="/top-videos" exact component={TopVideos} />
+          <Route path="/new-videos" exact component={RecentVideos} />
           <Footer />
         </Router>
         <ToastContainer
