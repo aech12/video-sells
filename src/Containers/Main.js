@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 
 const Main = ({ location }) => {
   const [subscription, setSubscription] = useState();
-  const elementsPerPage = 5;
+  const elementsPerPage = 8;
   const offset = 0;
 
   // DOESNT HAVE TO BE USEFFECT, FIX
