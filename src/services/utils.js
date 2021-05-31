@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 let token = null;
-const baseUrl = process.env.BASE_URL || "http://localhost:3001";
+const baseUrl = 'https://video-sells-server.herokuapp.com' || "http://localhost:3001";
 
 const setToken = (loginToken) => {
   console.log("GET", getToken());
