@@ -1,5 +1,5 @@
 import axios from "axios";
-const baseUrl = "http://localhost:3001";
+import {baseUrl} from "./utils";
 
 // LOGIN / SIGN UP
 const login = ({ username, password }) =>

@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 let token = null;
-const baseUrl = "http://localhost:3001";
+const baseUrl = process.env.BASE_URL || "http://localhost:3001";
 
 const setToken = (loginToken) => {
   console.log("GET", getToken());
